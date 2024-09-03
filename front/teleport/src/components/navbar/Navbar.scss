@@ -1,69 +1,31 @@
-
-
-
-
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #3f51b5; /* Indigo background */
-    color: #ffffff;
+  display: flex;
+  justify-content: center; /* Center contents horizontally */
+  align-items: center; /* Center contents vertically */
+  padding: 1rem 2rem;
+  background-color: black;
+  color: #ffffff;
   
-    &__logo h1 {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin: 0;
-      letter-spacing: 1px;
-    }
+  /* Optional: Ensure navbar takes full width */
+  width: 100%;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  //gap: 0.1rem; /* Space between elements */
   
-    &__links {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-  
-      &__item a {
-        text-decoration: none;
-        color: #ffffff;
-        font-size: 1rem;
-        transition: color 0.3s ease;
-  
-        &:hover {
-          color: #c5cae9; /* Lighter indigo on hover */
-        }
-      }
-    }
-  
-    &__actions {
-      display: flex;
-      gap: 1rem;
-  
-      .navbar__login, .navbar__signup {
-        padding: 0.6rem 1.2rem;
-        font-size: 1rem;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background-color: transparent;
-        color: #ffffff;
-        border: 1px solid transparent;
-  
-        &:hover {
-          background-color: #5c6bc0; /* Slightly darker indigo on hover */
-          color: #ffffff;
-          border-color: #ffffff; /* Add a white border on hover */
-        }
-      }
-  
-      .navbar__signup {
-        background-color: #7986cb; /* Slightly lighter indigo for signup */
-        border-color: transparent;
-  
-        &:hover {
-          background-color: #303f9f; /* Darker indigo on hover */
-          border-color: #ffffff;
-        }
-      }
-    }
+  h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
   }
   
+  .navbar__icon {
+    font-size: 1.5rem;
+    size: 20px;
+    color: #ffffff;
+    margin: 0 0.5rem; /* Space around the icon */
+  }
+}

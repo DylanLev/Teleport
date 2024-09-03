@@ -1,0 +1,102 @@
+.body-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.swiper-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px); /* Adjust height to leave space for footer */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  color: white;
+  z-index: 10;
+}
+
+.left {
+  width: 60%;
+  height: 100%;
+  padding-right: 2rem;
+  overflow-y: auto;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;  /* Chrome, Safari, Opera*/
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p, ul {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+}
+
+.right {
+  width: 35%;
+}
+
+.footer {
+  position: relative;
+  height: 60px; /* Adjust this height as needed */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  z-index: 5; /* Ensure footer is above other content */
+}
