@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.country-choice {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0a0a0a;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .country-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5);
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .country-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 1rem 0 2rem;
+    max-width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .country-item {
+    flex: 0 0 auto;
+    width: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover, &.selected {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.5);
+    }
+
+    img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    span {
+      display: block;
+      padding: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      font-size: 0.8rem;
+    }
+  }
+
+  .teleport-button {
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.5);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .country-choice {
+    padding: 2rem 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .country-search {
+      font-size: 0.9rem;
+    }
+
+    .country-item {
+      width: 100px;
+
+      img {
+        height: 60px;
+      }
+
+      span {
+        font-size: 0.7rem;
+      }
+    }
+
+    .teleport-button {
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+    }
+  }
+}
