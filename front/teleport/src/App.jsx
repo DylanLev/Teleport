@@ -57,7 +57,7 @@ function App() {
       
     },
     {
-      path: "/home/:id/:countryCode",
+      path: "/home/view/:countryCode",
       element: <Home />,
     },
     

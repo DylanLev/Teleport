@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Home.scss';
+import News from '../../components/functionalities/News.jsx';
+import countries from "../../constants/countries.js";
 
 
 const Home = () => {
-  const { id, countryCode } = useParams();
+  const { countryCode } = useParams();
   const navigate = useNavigate();
   const [countryName, setCountryName] = useState('');
   const [localDate, setLocalDate] = useState('');
@@ -13,36 +15,8 @@ const Home = () => {
   const [cityName, setCityName] = useState('');
   // Generate unique key for page refresh
   const videoKey = useMemo(() => Date.now(), []);
+  
 
-  // Countries data with timezones
-  const countries = {
-    FR: { name: 'France', timezone: 'Europe/Paris' },
-    JP: { name: 'Japan', timezone: 'Asia/Tokyo' },
-    BR: { name: 'Brazil', timezone: 'America/Sao_Paulo' },
-    AU: { name: 'Australia', timezone: 'Australia/Sydney' },
-    EG: { name: 'Egypt', timezone: 'Africa/Cairo' },
-    CA: { name: 'Canada', timezone: 'America/Toronto' },
-    DE: { name: 'Germany', timezone: 'Europe/Berlin' },
-    IN: { name: 'India', timezone: 'Asia/Kolkata' },
-    IT: { name: 'Italy', timezone: 'Europe/Rome' },
-    MX: { name: 'Mexico', timezone: 'America/Mexico_City' },
-    ZA: { name: 'South Africa', timezone: 'Africa/Johannesburg' },
-    ES: { name: 'Spain', timezone: 'Europe/Madrid' },
-    GB: { name: 'United Kingdom', timezone: 'Europe/London' },
-    US: { name: 'United States', timezone: 'America/New_York' },
-    CN: { name: 'China', timezone: 'Asia/Shanghai' },
-    RU: { name: 'Russia', timezone: 'Europe/Moscow' },
-    AR: { name: 'Argentina', timezone: 'America/Argentina/Buenos_Aires' },
-    NL: { name: 'Netherlands', timezone: 'Europe/Amsterdam' },
-    SE: { name: 'Sweden', timezone: 'Europe/Stockholm' },
-    CH: { name: 'Switzerland', timezone: 'Europe/Zurich' },
-    KR: { name: 'South Korea', timezone: 'Asia/Seoul' },
-    PT: { name: 'Portugal', timezone: 'Europe/Lisbon' },
-    GR: { name: 'Greece', timezone: 'Europe/Athens' },
-    TR: { name: 'Turkey', timezone: 'Europe/Istanbul' },
-    NZ: { name: 'New Zealand', timezone: 'Pacific/Auckland' },
-    IL: { name: 'Israel', timezone: 'Asia/Jerusalem' }
-  };
 
   // Extract city name from timezone
   const getCityFromTimezone = (timezone) => {
@@ -77,7 +51,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!id || !countryCode) {
+    if (!countryCode) {
       navigate('/');
       return;
     }
@@ -110,9 +84,9 @@ const Home = () => {
     fetchWeatherData(code);
 
     return () => clearInterval(timer);
-  }, [id, countryCode, navigate]);
+  }, [countryCode, navigate]);
 
-  if (!id || !countryCode) {
+  if (!countryCode) {
     return null;
   }
 
@@ -130,74 +104,72 @@ const Home = () => {
         </header>
       
         <main>
-          <div className="column left">
-            <section className="weather">
-              <h2>Weather in {countryName} ({cityName})</h2>
-              {weatherData ? (
-                <div>
-                  <p>Temperature: {weatherData.temp}°C</p>
-                  <p>Description: {weatherData.weather.description}</p>
-                  <img src={`https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`} alt="Weather icon" />
-                  <p>Wind Speed: {weatherData.wind_spd.toFixed(1)} m/s</p>
-                  <p>Humidity: {weatherData.rh}%</p>
-                </div>
-              ) : (
-                <p>Loading weather data...</p>
-              )}
-            </section>
-
-            <section className="currency">
-            <h2>Exchange Rates</h2>
-            {/* Currency exchange rates content specific to the country */}
-          </section>
-
-          <section className="economics">
-            <h2>Economic Indicators</h2>
-            {/* Economic indicators content specific to the country */}
-          </section>
+  <div className="column left">
+    <section className="weather">
+      <h2>Weather in {countryName} ({cityName})</h2>
+      {weatherData ? (
+        <div>
+          <p>Temperature: {weatherData.temp}°C</p>
+          <p>Description: {weatherData.weather.description}</p>
+          <img src={`https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`} alt="Weather icon" />
+          <p>Wind Speed: {weatherData.wind_spd.toFixed(1)} m/s</p>
+          <p>Humidity: {weatherData.rh}%</p>
         </div>
+      ) : (
+        <p>Loading weather data...</p>
+      )}
+    </section>
 
-        <div className="column center">
-          <section className="news">
-            <h2>Current Events in {countryName}</h2>
-            {/* News content specific to the country */}
-          </section>
+    <section className="currency">
+      <h2>Exchange Rates</h2>
+      {/* Currency exchange rates content specific to the country */}
+    </section>
 
-          <section className="twitter">
-            <h2>Trending on Twitter in {countryName}</h2>
-            {/* Twitter API content specific to the country */}
-          </section>
+    <section className="economics">
+      <h2>Economic Indicators</h2>
+      {/* Economic indicators content specific to the country */}
+    </section>
+  </div>
 
-          <section className="music">
-            <h2>Spotify Top Tracks in {countryName}</h2>
-            {/* Spotify API content specific to the country */}
-          </section>
-        </div>
+  <div className="column center">
+    <News 
+      countryName={countryName}
+      countryCode={countryCode}
+    />
+    
+    <section className="twitter">
+      <h2>Trending on Twitter in {countryName}</h2>
+      {/* Twitter API content specific to the country */}
+    </section>
 
-        <div className="column right">
-          <section className="language">
-            <h2>Learn {getLanguageByCountry(countryCode)}</h2>
-            {/* Language learning AI content specific to the country */}
-          </section>
+    <section className="music">
+      <h2>Spotify Top Tracks in {countryName}</h2>
+      {/* Spotify API content specific to the country */}
+    </section>
+  </div>
 
-          <section className="words">
-            <h2>Word of the Day in {getLanguageByCountry(countryCode)}</h2>
-            {/* Words of the day content specific to the country's language */}
-          </section>
+  <div className="column right">
+    <section className="language">
+      <h2>Learn {getLanguageByCountry(countryCode)}</h2>
+      {/* Language learning AI content specific to the country */}
+    </section>
 
-          <section className="history">
-            <h2>This Day in {countryName}'s History</h2>
-            {/* Historical fact API content specific to the country */}
-          </section>
+    <section className="words">
+      <h2>Word of the Day in {getLanguageByCountry(countryCode)}</h2>
+      {/* Words of the day content specific to the country's language */}
+    </section>
 
-          <section className="fun-fact">
-            <h2>Did You Know? ({countryName} Edition)</h2>
-            {/* Fun fact API content specific to the country */}
-          </section>
-          </div>
+    <section className="history">
+      <h2>This Day in {countryName}'s History</h2>
+      {/* Historical fact API content specific to the country */}
+    </section>
 
-          {/* Center and right columns remain unchanged */}
-        </main>
+    <section className="fun-fact">
+      <h2>Did You Know? ({countryName} Edition)</h2>
+      {/* Fun fact API content specific to the country */}
+    </section>
+  </div>
+</main>
       </div>
     </>
   );

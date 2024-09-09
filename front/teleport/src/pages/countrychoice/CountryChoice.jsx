@@ -73,7 +73,8 @@ const CountryChoice = () => {
 
   const handleTeleport = () => {
     if (selectedCountry) {
-      navigate(`/home/${selectedCountry.id}/${selectedCountry.code.toLowerCase()}`);
+      console.log(`Navigating to: /home/view/${selectedCountry.code.toLowerCase()}`);
+      navigate(`/home/view/${selectedCountry.code.toLowerCase()}`);
     }
   };
 

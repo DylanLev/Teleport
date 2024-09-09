@@ -18,7 +18,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
-      'import.meta.env.VITE_WEATHER': JSON.stringify(env.VITE_WEATHER)
+      'import.meta.env.VITE_WEATHER': JSON.stringify(env.VITE_WEATHER),
+      'import.meta.env.VITE_NEWS': JSON.stringify(env.VITE_NEWS) // Added News API key
     },
     // Vous pouvez également exposer d'autres variables d'environnement si nécessaire
     // 'import.meta.env.SOME_OTHER_VAR': JSON.stringify(env.SOME_OTHER_VAR)
