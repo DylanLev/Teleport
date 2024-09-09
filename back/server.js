@@ -39,7 +39,7 @@ app.get('/api/news/:countryCode', async (req, res) => {
   try {
     // If not in cache, fetch from API
     const API_KEY = process.env.VITE_NEWS;
-    const response = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=${API_KEY}&locale=${countryCode}&limit=3`);
+    const response = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=${API_KEY}&locale=${countryCode}&language=en&limit=3`);
     const newsData = response.data.data;
 
     // Store in cache
