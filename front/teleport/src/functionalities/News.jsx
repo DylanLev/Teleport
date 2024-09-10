@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { fetchNews } from '../../api/newsApi.js';
+import { fetchNews } from '../api/newsApi.js';
 
 const News = ({ countryName, countryCode }) => {
   const [news, setNews] = useState([]);

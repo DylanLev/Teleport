@@ -1,8 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Home.scss';
-import News from '../../components/functionalities/News.jsx';
+import News from '../../functionalities/News.jsx';
+import Weather from '../../functionalities/Weather.jsx'
 import countries from "../../constants/countries.js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRadio } from '@fortawesome/free-solid-svg-icons';
+import Radio from '../../functionalities/Radio.jsx';
+import useRadio from '../../../services/useRadio.js';
 
 
 const Home = () => {
@@ -16,6 +21,8 @@ const Home = () => {
   // Generate unique key for page refresh
   const videoKey = useMemo(() => Date.now(), []);
   
+  const { isPlaying, toggleRadio } = useRadio(countryName);
+
 
 
   // Extract city name from timezone
@@ -101,10 +108,14 @@ const Home = () => {
         <header>
           <h1>{countryName}</h1>
           <p className="date">{localDate}</p>
+          <div className="radio-icon" onClick={toggleRadio}>
+              <FontAwesomeIcon icon={faRadio} color={isPlaying ? "green" : "white"} />
+          </div>
         </header>
       
         <main>
   <div className="column left">
+  
     <section className="weather">
       <h2>Weather in {countryName} ({cityName})</h2>
       {weatherData ? (
