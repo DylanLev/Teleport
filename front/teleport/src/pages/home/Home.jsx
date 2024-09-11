@@ -8,6 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRadio } from '@fortawesome/free-solid-svg-icons';
 import Radio from '../../functionalities/Radio.jsx';
 import useRadio from '../../../services/useRadio.js';
+import Currency from '../../functionalities/Currency.jsx';
+import Language from '../../functionalities/Language.jsx';
+
 
 
 const Home = () => {
@@ -20,8 +23,8 @@ const Home = () => {
   const [cityName, setCityName] = useState('');
   // Generate unique key for page refresh
   const videoKey = useMemo(() => Date.now(), []);
-  
   const { isPlaying, toggleRadio } = useRadio(countryName);
+  const [exchangeRate, setExchangeRate] = useState(null);
 
 
 
@@ -115,26 +118,16 @@ const Home = () => {
       
         <main>
   <div className="column left">
-  
-    <section className="weather">
-      <h2>Weather in {countryName} ({cityName})</h2>
-      {weatherData ? (
-        <div>
-          <p>Temperature: {weatherData.temp}°C</p>
-          <p>Description: {weatherData.weather.description}</p>
-          <img src={`https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`} alt="Weather icon" />
-          <p>Wind Speed: {weatherData.wind_spd.toFixed(1)} m/s</p>
-          <p>Humidity: {weatherData.rh}%</p>
-        </div>
-      ) : (
-        <p>Loading weather data...</p>
-      )}
-    </section>
 
-    <section className="currency">
-      <h2>Exchange Rates</h2>
-      {/* Currency exchange rates content specific to the country */}
-    </section>
+    <Weather 
+            countryName={countryName}
+            countryCode={countryCode}
+            cityName={cityName}
+    />  
+
+    <Currency 
+      countryCode={countryCode} 
+    />
 
     <section className="economics">
       <h2>Economic Indicators</h2>
@@ -160,10 +153,9 @@ const Home = () => {
   </div>
 
   <div className="column right">
-    <section className="language">
-      <h2>Learn {getLanguageByCountry(countryCode)}</h2>
-      {/* Language learning AI content specific to the country */}
-    </section>
+    <Language
+      countryCode={countryCode} 
+    />
 
     <section className="words">
       <h2>Word of the Day in {getLanguageByCountry(countryCode)}</h2>

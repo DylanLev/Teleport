@@ -1,4 +1,5 @@
-const asyncHandler = require('express-async-handler');
+import asyncHandler from 'express-async-handler';
+
 //automatically catching exceptions in asynchronous functions, 
 //eliminating the need for manual try/catch blocks, and 
 //facilitating the use of async/await in route handlers 
@@ -36,9 +37,4 @@ const deleteFavorite = asyncHandler(async (req,res) => {
     res.status(200).json({message: `Delete favorite ${req.params.id}`})
 });
 
-module.exports = {
-    getFavorites,
-    setFavorite,
-    updateFavorite,
-    deleteFavorite
-}
+export { getFavorites, setFavorite, updateFavorite, deleteFavorite };

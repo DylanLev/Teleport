@@ -1,16 +1,18 @@
-const express = require('express');
-const dotenv = require('dotenv').config();
-const port = process.env.PORT || 5000;
-const colors = require("colors");
-const connectDB = require('./config/db.js');
-const {errorHandler} = require('./middlewares/errorMiddleware');
-const NodeCache = require('node-cache');
-const axios = require('axios');
-const cors = require('cors');
+import express from 'express';
+import dotenv from 'dotenv';
+import colors from 'colors';
+import connectDB from './config/db.js';
+import errorHandler from './middlewares/errorMiddleware.js';
+import NodeCache from 'node-cache';
+import axios from 'axios';
+import cors from 'cors'
+import currencyMap from './config/currencies.js';
+import favoriteRoutes from './routes/favoriteRoute.js';
+import noteRoutes from './routes/noteRoute.js';
 
 
-
-// Your existing routes and middleware go here
+dotenv.config();
+const port = process.env.PORT;
 
 connectDB();
 const app = express();
@@ -23,15 +25,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.use('/api/favorites', require('./routes/favoriteRoute.js'));
-app.use('/api/notes', require('./routes/noteRoute.js'));
+app.use('/api/favorites', favoriteRoutes);
+app.use('/api/notes', noteRoutes);
 
+//-------------------------------------------------------------------------
 // New route for fetching news
 app.get('/api/news/:countryCode', async (req, res) => {
   const { countryCode } = req.params;
   
   // Check if data is in cache
-  const cachedData = cache.get(countryCode);
+  const cachedData = cache.get(`news_${countryCode}`);
   if (cachedData) {
     return res.json(cachedData);
   }
@@ -43,7 +46,8 @@ app.get('/api/news/:countryCode', async (req, res) => {
     const newsData = response.data.data;
 
     // Store in cache
-    cache.set(countryCode, newsData);
+    cache.set(`news_${countryCode}`, newsData);
+
 
     res.json(newsData);
   } catch (error) {
@@ -51,7 +55,49 @@ app.get('/api/news/:countryCode', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch news' });
   }
 });
+//------------------------------------------------------------------
+app.get('/api/currency-exchange/:countryCode', async (req, res) => {
+  const { countryCode } = req.params;
+  
+  // Convert country code to currency code
+  const currencyCode = currencyMap[countryCode.toUpperCase()] || countryCode.toUpperCase();
 
+  // Check if data is in cache
+  const cacheKey = `currency_${currencyCode}`;
+  const cachedData = cache.get(cacheKey);
+  if (cachedData) {
+    return res.json(cachedData);
+  }
+
+  try {
+    const API_KEY = process.env.VITE_CURRENCY;
+    const response = await axios.get(`https://continentl.com/api/currency-exchange-details/${currencyCode}`, {
+      params: {
+        key: API_KEY
+      }
+    });
+    const exchangeData = response.data;
+
+    // Store in cache
+    cache.set(cacheKey, exchangeData);
+
+    res.json(exchangeData);
+  } catch (error) {
+    console.error('Error fetching currency exchange data:', error);
+    res.status(500).json({ error: 'Failed to fetch currency exchange data' });
+  }
+});
+//-------------------------------------------------------------------------------------
 app.use(errorHandler);
+//----------------------
+//DEBUG
+app.get('/api/cache-status', (req, res) => {
+  const cacheKeys = cache.keys();
+  const cacheContents = {};
+  cacheKeys.forEach(key => {
+    cacheContents[key] = cache.get(key);
+  });
+  res.json(cacheContents);
+});
 
 app.listen(port, ()=> console.log(`Server started on port ${port}`))

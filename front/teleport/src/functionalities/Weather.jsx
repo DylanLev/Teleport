@@ -3,12 +3,13 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchWeatherData } from '../../services/weatherService.js';
 
 const Weather = ({ countryName, countryCode, cityName }) => {
-  const { data: weatherData, isLoading, error } = useQuery(
-    ['weather', countryCode, cityName],
-    () => fetchWeatherData(countryCode, cityName)
-  );
+  const { data: weatherData, isPending, error } = useQuery({
+    queryKey: ['weather', countryCode, cityName],
+    queryFn: () => fetchWeatherData(countryCode, cityName),
+    enabled: !!countryCode && !!cityName
+  });
 
-  if (isLoading) return <p>Loading weather data...</p>;
+  if (isPending) return <p>Loading weather data...</p>;
   if (error) return <p>Error loading weather data: {error.message}</p>;
 
   return (

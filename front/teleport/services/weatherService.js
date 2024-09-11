@@ -1,10 +1,4 @@
-import countries from "../src/constants/countries.js";
-
 const API_KEY = import.meta.env.VITE_WEATHER;
-
-export const getCityFromTimezone = (timezone) => {
-  return timezone.split('/').pop().replace(/_/g, ' ');
-};
 
 export const fetchWeatherData = async (countryCode, cityName) => {
   const url = `https://api.weatherbit.io/v2.0/current?key=${API_KEY}&city=${encodeURIComponent(cityName)}&country=${countryCode}`;
@@ -21,4 +15,8 @@ export const fetchWeatherData = async (countryCode, cityName) => {
     console.error("Error in retrieving weather data:", error);
     throw error;
   }
+};
+
+export const getCityFromTimezone = (timezone) => {
+  return timezone.split('/').pop().replace(/_/g, ' ');
 };

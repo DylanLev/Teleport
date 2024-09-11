@@ -1,4 +1,4 @@
-const asyncHandler = require('express-async-handler');
+import asyncHandler from 'express-async-handler';
 //automatically catching exceptions in asynchronous functions, 
 //eliminating the need for manual try/catch blocks, and 
 //facilitating the use of async/await in route handlers 
@@ -36,9 +36,4 @@ const deleteNote = asyncHandler(async (req,res) => {
     res.status(200).json({message: `Delete Note ${req.params.id}`})
 });
 
-module.exports = {
-    getNotes,
-    setNote,
-    updateNote,
-    deleteNote
-}
+export { getNotes, setNote, updateNote, deleteNote };

@@ -4,7 +4,7 @@ import path from 'path'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  console.log('Loaded env:', env) // Pour le débogage
+  console.log('Loaded env:', env) // For debugging
 
   return {
     plugins: [react()],
@@ -19,9 +19,10 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       'import.meta.env.VITE_WEATHER': JSON.stringify(env.VITE_WEATHER),
-      'import.meta.env.VITE_NEWS': JSON.stringify(env.VITE_NEWS) // Added News API key
+      'import.meta.env.VITE_NEWS': JSON.stringify(env.VITE_NEWS),
+      'import.meta.env.VITE_CURRENCY': JSON.stringify(env.VITE_CURRENCY) // Added Currency API key
     },
-    // Vous pouvez également exposer d'autres variables d'environnement si nécessaire
+    // You can expose other environment variables if needed
     // 'import.meta.env.SOME_OTHER_VAR': JSON.stringify(env.SOME_OTHER_VAR)
   }
 })
