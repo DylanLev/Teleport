@@ -1,0 +1,30 @@
+const languages = {
+    FR: 'French',
+    JP: 'Japanese',
+    BR: 'Portuguese',
+    AU: 'English',
+    EG: 'Arabic',
+    IT: 'Italian',
+    CA: 'English',
+    DE: 'German',
+    IN: 'Hindi',
+    MX: 'Spanish',
+    ZA: 'English',
+    ES: 'Spanish',
+    GB: 'English',
+    US: 'English',
+    CN: 'Chinese',
+    RU: 'Russian',
+    AR: 'Spanish',
+    NL: 'Dutch',
+    SE: 'Swedish',
+    CH: 'German',
+    KR: 'Korean',
+    PT: 'Portuguese',
+    GR: 'Greek',
+    TR: 'Turkish',
+    NZ: 'English',
+    IL: 'Hebrew'
+  };
+
+  export default languages;

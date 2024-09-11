@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { fetchExchangeRate } from '../../services/currencyService.js';
+import { fetchExchangeRate } from '../../services/currencyService';
+import currencyMap from '../../../../back/config/currencies';
+import supportedCurrencies from '../constants/supportedCurrencies';
+
 
 const Currency = ({ countryCode }) => {
   const [exchangeRate, setExchangeRate] = useState(null);
@@ -10,8 +13,14 @@ const Currency = ({ countryCode }) => {
     const getExchangeRate = async () => {
       if (countryCode) {
         setIsLoading(true);
+        const currencyCode = getCurrencyCode(countryCode);
+        if (!supportedCurrencies.includes(currencyCode)) {
+          setError('Currency for this country is not supported yet');
+          setIsLoading(false);
+          return;
+        }
         try {
-          const data = await fetchExchangeRate(countryCode);
+          const data = await fetchExchangeRate(currencyCode);
           setExchangeRate(data);
           setError(null);
         } catch (err) {
@@ -27,18 +36,11 @@ const Currency = ({ countryCode }) => {
   }, [countryCode]);
 
   const formatRate = (rate) => {
-    return typeof rate === 'number' ? rate.toFixed(4) : parseFloat(rate).toFixed(4);
+    return typeof rate === 'number' ? rate.toFixed(4) : 'N/A';
   };
 
-  const getLocalCurrencyForUSD = () => {
-    if (exchangeRate && exchangeRate.exchange) {
-      const usdRate = exchangeRate.exchange.find(item => item.code === 'USD');
-      if (usdRate) {
-        // Invert the rate to get local currency per 1 USD
-        return 1 / parseFloat(usdRate.rate);
-      }
-    }
-    return null;
+  const getCurrencyCode = (countryCode) => {
+    return currencyMap[countryCode.toUpperCase()];
   };
 
   if (error) {
@@ -50,16 +52,13 @@ const Currency = ({ countryCode }) => {
       <h2>Exchange Rate</h2>
       {isLoading ? (
         <p>Loading exchange rate data...</p>
-      ) : exchangeRate ? (
+      ) : exchangeRate && exchangeRate.data ? (
         <div>
-          {exchangeRate.base_code && getLocalCurrencyForUSD() ? (
-            <>
-              <p>1 USD = {formatRate(getLocalCurrencyForUSD())} {exchangeRate.base_symbol} ({exchangeRate.base_code})</p>
-              <p>Last updated: {new Date(exchangeRate.exchange.find(item => item.code === 'USD').last_update_unix * 1000).toLocaleString()}</p>
-            </>
-          ) : (
-            <p>USD exchange rate not available for this currency.</p>
-          )}
+          {Object.entries(exchangeRate.data).map(([currency, rate]) => (
+            <p key={currency}>
+              1 USD ≈ {formatRate(rate)} {currency}
+            </p>
+          ))}
         </div>
       ) : (
         <p>No exchange rate data available.</p>

@@ -82,7 +82,7 @@ const CountryChoice = () => {
       <h1>Where would you like to teleport today?</h1>
       <input
         type="text"
-        placeholder="Search for a country..."
+        placeholder="ex: United States"
         value={searchTerm}
         onChange={handleSearchChange}
         className="country-search"

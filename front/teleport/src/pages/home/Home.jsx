@@ -10,6 +10,7 @@ import Radio from '../../functionalities/Radio.jsx';
 import useRadio from '../../../services/useRadio.js';
 import Currency from '../../functionalities/Currency.jsx';
 import Language from '../../functionalities/Language.jsx';
+import History from '../../functionalities/History.jsx';
 
 
 
@@ -154,18 +155,12 @@ const Home = () => {
 
   <div className="column right">
     <Language
-      countryCode={countryCode} 
+    countryCode={countryCode} 
     />
 
-    <section className="words">
-      <h2>Word of the Day in {getLanguageByCountry(countryCode)}</h2>
-      {/* Words of the day content specific to the country's language */}
-    </section>
-
-    <section className="history">
-      <h2>This Day in {countryName}'s History</h2>
-      {/* Historical fact API content specific to the country */}
-    </section>
+    <History
+    countryName={countryName}
+    />
 
     <section className="fun-fact">
       <h2>Did You Know? ({countryName} Edition)</h2>
