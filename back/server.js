@@ -1,103 +1,3 @@
-// import express from 'express';
-// import dotenv from 'dotenv';
-// import colors from 'colors';
-// import connectDB from './config/db.js';
-// import errorHandler from './middlewares/errorMiddleware.js';
-// import NodeCache from 'node-cache';
-// import axios from 'axios';
-// import cors from 'cors'
-// import currencyMap from './config/currencies.js';
-// import favoriteRoutes from './routes/favoriteRoute.js';
-// import noteRoutes from './routes/noteRoute.js';
-
-
-// dotenv.config();
-// const port = process.env.PORT;
-
-// connectDB();
-// const app = express();
-
-// // Initialize cache
-// const cache = new NodeCache({ stdTTL: 24 * 60 * 60 }); // Cache for 24 hours
-
-// // Enable CORS for all routes
-// app.use(cors());
-// app.use(express.json());
-// app.use(express.urlencoded({extended: false}));
-
-// app.use('/api/favorites', favoriteRoutes);
-// app.use('/api/notes', noteRoutes);
-
-// //-------------------------------------------------------------------------
-// // New route for fetching news
-// app.get('/api/news/:countryCode', async (req, res) => {
-//   const { countryCode } = req.params;
-  
-//   // Check if data is in cache
-//   const cachedData = cache.get(`news_${countryCode}`);
-//   if (cachedData) {
-//     return res.json(cachedData);
-//   }
-
-//   try {
-//     // If not in cache, fetch from API
-//     const API_KEY = process.env.VITE_NEWS;
-//     const response = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=${API_KEY}&locale=${countryCode}&language=en&categories=general&limit=3`);
-//     const newsData = response.data.data;
-
-//     // Store in cache
-//     cache.set(`news_${countryCode}`, newsData);
-
-
-//     res.json(newsData);
-//   } catch (error) {
-//     console.error('Error fetching news:', error);
-//     res.status(500).json({ error: 'Failed to fetch news' });
-//   }
-// });
-// //------------------------------------------------------------------
-// app.get('/api/currency-exchange/:countryCode', async (req, res) => {
-//   const { countryCode } = req.params;
-  
-//   // Convert country code to currency code
-//   const currencyCode = currencyMap[countryCode.toUpperCase()] || countryCode.toUpperCase();
-
-//   // Check if data is in cache
-//   const cacheKey = `currency_${currencyCode}`;
-//   const cachedData = cache.get(cacheKey);
-//   if (cachedData) {
-//     return res.json(cachedData);
-//   }
-
-//   try {
-//     const API_URL = 'https://api.freecurrencyapi.com/v1/latest?';
-//     const API_KEY = process.env.VITE_CURRENCY_NEW;
-//     const response = await axios.get(`${API_URL}apikey=${API_KEY}&currencies=${currencyCode}`);
-//     const exchangeData = response.data;
-
-//     // Store in cache
-//     cache.set(cacheKey, exchangeData);
-
-//     res.json(exchangeData);
-//   } catch (error) {
-//     console.error('Error fetching currency exchange data:', error);
-//     res.status(500).json({ error: 'Failed to fetch currency exchange data' });
-//   }
-// });
-// //-------------------------------------------------------------------------------------
-// app.use(errorHandler);
-// //----------------------
-// //DEBUG
-// app.get('/api/cache-status', (req, res) => {
-//   const cacheKeys = cache.keys();
-//   const cacheContents = {};
-//   cacheKeys.forEach(key => {
-//     cacheContents[key] = cache.get(key);
-//   });
-//   res.json(cacheContents);
-// });
-
-// app.listen(port, ()=> console.log(`Server started on port ${port}`))
 
 import express from 'express';
 import dotenv from 'dotenv';
@@ -111,6 +11,8 @@ import currencyMap from './config/currencies.js';
 import favoriteRoutes from './routes/favoriteRoute.js';
 import noteRoutes from './routes/noteRoute.js';
 import cron from 'node-cron';
+import coordinates from "./config/coordinates.js";
+
 
 dotenv.config();
 const port = process.env.PORT;
@@ -129,9 +31,33 @@ app.use(express.urlencoded({extended: false}));
 app.use('/api/favorites', favoriteRoutes);
 app.use('/api/notes', noteRoutes);
 
+// Function to fetch and cache weather data
+const fetchAndCacheWeather = async (countryCode) => {
+  try {
+   
+    const LATITUDE = coordinates[countryCode.toUpperCase()].lat;
+    const LONGITUDE = coordinates[countryCode.toUpperCase()].lon;
+    
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${LATITUDE}&longitude=${LONGITUDE}&hourly=temperature_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m&forecast_days=1`;
+    const response = await axios.get(url);
+  
+    const weatherData = response.data;
+    cache.set(`weather_${countryCode}`, { data: weatherData, timestamp: Date.now() });
+    return weatherData;
+  } catch (error) {
+    console.error(`Error fetching weather for ${countryCode}:`, error);
+    throw error; // Re-throw the error so it can be caught in the route handler
+  }
+};
+
+
+
+
+
 // Function to fetch and cache news data
 const fetchAndCacheNews = async (countryCode) => {
   try {
+    //RAJOUTER published_on=2024-09-11 (la date d'auj) dans l'url ?
     const API_KEY = process.env.VITE_NEWS;
     const response = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=${API_KEY}&locale=${countryCode}&language=en&categories=general&limit=3`);
     const newsData = response.data.data;
@@ -146,6 +72,7 @@ const fetchAndCacheNews = async (countryCode) => {
 // Function to fetch and cache currency data
 const fetchAndCacheCurrency = async (currencyCode) => {
   try {
+
     const API_URL = 'https://api.freecurrencyapi.com/v1/latest?';
     
     const API_KEY = process.env.VITE_CURRENCY_NEW;
@@ -213,6 +140,37 @@ app.get('/api/currency-exchange/:countryCode', async (req, res) => {
   } catch (error) {
     console.error('Error in currency exchange route:', error);
     res.status(500).json({ error: 'Failed to fetch currency exchange data' });
+  }
+});
+
+app.get('/api/weather/:countryCode', async (req, res) => {
+  const { countryCode } = req.params;
+  const cacheKey = `weather_${countryCode}`;
+  const cachedData = cache.get(cacheKey);
+
+  if (cachedData && (Date.now() - cachedData.timestamp < 24 * 60 * 60 * 1000)) {
+    return res.json(cachedData.data);
+  }
+
+  try {
+    const weatherData = await fetchAndCacheWeather(countryCode);
+    res.json(weatherData);
+  } catch (error) {
+    console.error('Error in weather route:', error);
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.error(error.response.data);
+      console.error(error.response.status);
+      console.error(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error('Error', error.message);
+    }
+    res.status(500).json({ error: 'Failed to fetch weather data', details: error.message });
   }
 });
 

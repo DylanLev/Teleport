@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
+      //Weather URL expires in mid september
       'import.meta.env.VITE_WEATHER': JSON.stringify(env.VITE_WEATHER),
       'import.meta.env.VITE_NEWS': JSON.stringify(env.VITE_NEWS),
       'import.meta.env.VITE_CURRENCY': JSON.stringify(env.VITE_CURRENCY), // Added Currency API key
