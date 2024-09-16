@@ -1,0 +1,94 @@
+{
+    "influencers": [
+      {
+        "name": "Elon Musk",
+        "location": "Austin",
+        "event": "Tech Summit 2024"
+      },
+      {
+        "name": "Cristiano Ronaldo",
+        "location": "Riyadh",
+        "event": "Charity Gala"
+      },
+      {
+        "name": "Andrew Tate",
+        "location": "Dubai",
+        "event": "Entrepreneurship Conference"
+      },
+      {
+        "name": "Sam Altman",
+        "location": "San Francisco",
+        "event": "AI Ethics Symposium"
+      },
+      {
+        "name": "Timothée Chalamet",
+        "location": "New York",
+        "event": "Film Festival Premiere"
+      },
+      {
+        "name": "Kylie Jenner",
+        "location": "Los Angeles",
+        "event": "Beauty Line Launch"
+      },
+      {
+        "name": "Ryan Reynolds",
+        "location": "Vancouver",
+        "event": "Charity Fundraiser"
+      },
+      {
+        "name": "Jake Paul",
+        "location": "Miami",
+        "event": "Boxing Match"
+      },
+      {
+        "name": "Tim Cook",
+        "location": "Cupertino",
+        "event": "Apple Keynote"
+      },
+      {
+        "name": "Joe Rogan",
+        "location": "Austin",
+        "event": "Comedy Tour"
+      },
+      {
+        "name": "Lex Fridman",
+        "location": "Cambridge",
+        "event": "AI and Philosophy Talk"
+      },
+      {
+        "name": "MrBeast",
+        "location": "Greenville",
+        "event": "Charity Challenge"
+      },
+      {
+        "name": "Selena Gomez",
+        "location": "New York",
+        "event": "Mental Health Awareness Campaign"
+      },
+      {
+        "name": "Rihanna",
+        "location": "Barbados",
+        "event": "Fashion Show"
+      },
+      {
+        "name": "Ariana Grande",
+        "location": "Los Angeles",
+        "event": "Album Release Party"
+      },
+      {
+        "name": "Mark Zuckerberg",
+        "location": "Menlo Park",
+        "event": "Metaverse Conference"
+      },
+      {
+        "name": "Dwayne 'The Rock' Johnson",
+        "location": "Hollywood",
+        "event": "Movie Premiere"
+      },
+      {
+        "name": "Emma Chamberlain",
+        "location": "Los Angeles",
+        "event": "Coffee Brand Launch"
+      }
+    ]
+  }

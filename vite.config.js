@@ -22,7 +22,11 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.VITE_WEATHER': JSON.stringify(env.VITE_WEATHER),
       'import.meta.env.VITE_NEWS': JSON.stringify(env.VITE_NEWS),
       'import.meta.env.VITE_CURRENCY': JSON.stringify(env.VITE_CURRENCY), // Added Currency API key
-      'import.meta.env.VITE_CURRENCY_NEW': JSON.stringify(env.VITE_CURRENCY_NEW) // Added Currency API key
+      'import.meta.env.VITE_CURRENCY_NEW': JSON.stringify(env.VITE_CURRENCY_NEW), // Added Currency API key
+      'import.meta.env.VITE_APININJA': JSON.stringify(env.VITE_APININJA), // Added API NINJA
+      'import.meta.env.TELEGRAMBOT': JSON.stringify(env.TELEGRAMBOT) // Added TELEGRAM API
+
+
 
     },
     // You can expose other environment variables if needed

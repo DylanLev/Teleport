@@ -1,0 +1,4 @@
+/* Add this CSS to your stylesheet or within a <style> tag */
+.leaflet-container {
+    filter: invert(100%) hue-rotate(180deg) brightness(90%) contrast(90%);
+  }

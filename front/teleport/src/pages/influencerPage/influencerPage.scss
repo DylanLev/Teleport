@@ -1,0 +1,42 @@
+.influencer-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+  
+    h2 {
+      color: #444;
+      margin-top: 20px;
+    }
+  
+    a {
+      color: #0066cc;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    .social-media-list, .events-list {
+      list-style-type: none;
+      padding: 0;
+  
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  
+    .latest-content {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+  }

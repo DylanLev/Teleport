@@ -1,10 +1,9 @@
-
 import express from 'express';
-import dotenv from 'dotenv';
 import colors from 'colors';
 import connectDB from './config/db.js';
 import errorHandler from './middlewares/errorMiddleware.js';
 import NodeCache from 'node-cache';
+import {port} from "./config/config.js";
 import axios from 'axios';
 import cors from 'cors';
 import currencyMap from './config/currencies.js';
@@ -12,13 +11,13 @@ import favoriteRoutes from './routes/favoriteRoute.js';
 import noteRoutes from './routes/noteRoute.js';
 import cron from 'node-cron';
 import coordinates from "./config/coordinates.js";
-
-
-dotenv.config();
-const port = process.env.PORT;
+import { telegramBotUri } from './config/config.js';  
+import { getEvents, initializeBot } from './config/telegram/telegramBot.js';
 
 connectDB();
 const app = express();
+
+
 
 // Initialize cache
 const cache = new NodeCache({ stdTTL: 24 * 60 * 60 }); // Cache for 24 hours
@@ -30,6 +29,20 @@ app.use(express.urlencoded({extended: false}));
 
 app.use('/api/favorites', favoriteRoutes);
 app.use('/api/notes', noteRoutes);
+
+
+//---------------TELEGRAM API------------------
+//Init
+initializeBot();
+
+//GET Events
+app.get('/api/events', async (req, res) => {
+  const events = await getEvents();
+  res.json(events);
+});
+//----------------------------------------------
+
+
 
 // Function to fetch and cache weather data
 const fetchAndCacheWeather = async (countryCode) => {
@@ -187,3 +200,6 @@ app.get('/api/cache-status', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
+
+export { telegramBotUri };

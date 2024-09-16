@@ -37,18 +37,18 @@
       gap: 1rem;
   
       .footer__social-link {
-        color: #ffffff;
+        color: black;
         font-size: 1.5rem;
         transition: color 0.3s ease;
   
         &:hover {
-          color: #c5cae9; /* Lighter indigo on hover */
+          color: black; /* Lighter indigo on hover */
         }
       }
     }
   
     &__bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      border-top: 0px solid black;
       padding-top: 1rem;
       font-size: 0.875rem;
     }

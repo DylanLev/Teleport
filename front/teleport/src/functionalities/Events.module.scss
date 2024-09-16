@@ -1,0 +1,84 @@
+// Events.module.scss
+
+.events {
+    position: relative;
+    margin-bottom: 2rem;
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #4ecdc4;
+    }
+  
+    .scrollContainer {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 1rem 0;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  
+    .eventCard {
+      flex: 0 0 auto;
+      width: 250px;
+      margin-right: 1rem;
+      padding: 1rem;
+      background-color: #2c2c2c;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(78, 205, 196, 0.2);
+      }
+  
+      .eventName {
+        color: #ff6b6b;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+  
+      p {
+        font-size: 0.9rem;
+        color: #cccccc;
+      }
+  
+      .date {
+        font-weight: bold;
+        color: #4ecdc4;
+      }
+    }
+  
+    .scrollButton {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(78, 205, 196, 0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: rgba(78, 205, 196, 0.8);
+      }
+  
+      &.left {
+        left: -20px;
+      }
+  
+      &.right {
+        right: -20px;
+      }
+    }
+  }

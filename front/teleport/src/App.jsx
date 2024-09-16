@@ -14,6 +14,8 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import CountryChoice from "./pages/countrychoice/CountryChoice.jsx";
+import GetStarted from "./pages/getStarted/getStarted.jsx";
+import InfluencerPage from "./pages/influencerPage/influencerPage.jsx";
 
 
 function App() {
@@ -52,6 +54,14 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/main",
+          element: <GetStarted />,
+        },
+        {
+          path: "/influencer",
+          element: <InfluencerPage />,
         },
       ],
       
