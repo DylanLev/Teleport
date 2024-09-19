@@ -5,6 +5,8 @@ import influencersData from "../../components/scrollbar/influencers.json";
 import Map from "../../components/map/Map.jsx";
 import Events from "../../functionalities/Events.jsx";
 import CitySelector from '../../functionalities/CitySelector.jsx'; 
+import Group from '../../functionalities/Groups.jsx';
+
 
 const GetStarted = () => {
   const [selectedContinent, setSelectedContinent] = useState(null);
@@ -33,12 +35,6 @@ const GetStarted = () => {
     'Australia': ['Sydney', 'Melbourne', 'Gold Coast']
   };
 
-  const groups = [
-    { name: 'Tech Entrepreneurs', platform: 'Telegram' },
-    { name: 'Digital Nomads', platform: 'Telegram' },
-    { name: '[Free] Udemy Courses', platform: 'Telegram' },
-    { name: 'Luxury Travel', platform: 'Telegram' }
-  ];
 
   const luxuryAccommodations = [
     { name: 'Burj Al Arab', location: 'Dubai', type: 'Hotel' },
@@ -69,20 +65,9 @@ const GetStarted = () => {
         <CitySelector continents={continents} cities={cities} />
         </div>
 
-      <div className="scroll-widgets">
-        <div className="scroll-widget">
-          <h2>Exclusive Groups</h2>
-          <div className="scroll-container" ref={scrollRefs.groups}>
-            {groups.map(group => (
-              <div key={group.name} className="group-card">
-                <h4>{group.name}</h4>
-                <p>Join on {group.platform}</p>
-              </div>
-            ))}
-          </div>
-          <button onClick={() => scrollContent(scrollRefs.groups, 'left')} className="scroll-button left">←</button>
-          <button onClick={() => scrollContent(scrollRefs.groups, 'right')} className="scroll-button right">→</button>
-        </div>
+        <div className="scroll-widgets">
+        <Group scrollContent={scrollContent} />
+        
 
         <div className="scroll-widget">
           <h2>Recommended by</h2>
@@ -112,7 +97,8 @@ const GetStarted = () => {
           <button onClick={() => scrollContent(scrollRefs.topics, 'right')} className="scroll-button right">→</button>
         </div>
       </div>
-    </div>
+      </div>
+    
   );
 };
 

@@ -12,7 +12,7 @@ import noteRoutes from './routes/noteRoute.js';
 import cron from 'node-cron';
 import coordinates from "./config/coordinates.js";
 import { telegramBotUri } from './config/config.js';  
-import { getEvents, initializeBot } from './config/telegram/telegramBot.js';
+import { getEvents,getGroups, initializeBot } from './config/telegram/telegramBot.js';
 
 connectDB();
 const app = express();
@@ -41,7 +41,11 @@ app.get('/api/events', async (req, res) => {
   res.json(events);
 });
 //----------------------------------------------
-
+//GET Groups
+app.get('/api/groups', async (req, res) => {
+  const groups = await getGroups();
+  res.json(groups);
+});
 
 
 // Function to fetch and cache weather data
