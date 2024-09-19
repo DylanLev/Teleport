@@ -1,5 +1,5 @@
 // coordinates.js
-
+//USE https://www.gps-coordinates.net/
 const cityCoordinates = {
     "New York": { lat: 40.7128, lon: -74.0060 },
     "London": { lat: 51.5074, lon: -0.1278 },
@@ -16,7 +16,8 @@ const cityCoordinates = {
     "Tel Aviv": { lat: 32.0853, lon: 34.7818 },
     "Los Angeles": { lat: 34.0522, lon: -118.2437 },
     "Marbella": { lat: 36.5100, lon: -4.8858 },
-    "Bucharest": { lat: 44.4268, lon: 26.1025 }
+    "Bucharest": { lat: 44.4268, lon: 26.1025 },
+    "Carlton Cannes": { lat: 43.547908782958984, lon: 7.02994966506958 },
   };
   
   function getCityCoordinates(cityName) {

@@ -4,6 +4,7 @@ import "./getStarted.scss";
 import influencersData from "../../components/scrollbar/influencers.json";
 import Map from "../../components/map/Map.jsx";
 import Events from "../../functionalities/Events.jsx";
+import CitySelector from '../../functionalities/CitySelector.jsx'; 
 
 const GetStarted = () => {
   const [selectedContinent, setSelectedContinent] = useState(null);
@@ -34,7 +35,8 @@ const GetStarted = () => {
 
   const groups = [
     { name: 'Tech Entrepreneurs', platform: 'Telegram' },
-    { name: 'Digital Nomads', platform: 'WhatsApp' },
+    { name: 'Digital Nomads', platform: 'Telegram' },
+    { name: '[Free] Udemy Courses', platform: 'Telegram' },
     { name: 'Luxury Travel', platform: 'Telegram' }
   ];
 
@@ -64,28 +66,8 @@ const GetStarted = () => {
 
         <Events/>
 
-        <div className="continent-selector">
-          {continents.map(continent => (
-            <button 
-              key={continent} 
-              onClick={() => setSelectedContinent(continent)}
-              className={selectedContinent === continent ? 'active' : ''}
-            >
-              {continent}
-            </button>
-          ))}
+        <CitySelector continents={continents} cities={cities} />
         </div>
-        {selectedContinent && (
-          <div className="city-grid">
-            {cities[selectedContinent].map(city => (
-              <div key={city} className="city-card">
-                <img src={`../../public/cityimages/${city.toLowerCase().replace(' ', '-')}.jpg`} alt={city} />
-                <h3>{city}</h3>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
 
       <div className="scroll-widgets">
         <div className="scroll-widget">
@@ -103,7 +85,7 @@ const GetStarted = () => {
         </div>
 
         <div className="scroll-widget">
-          <h2>Luxury Accommodations</h2>
+          <h2>Recommended by</h2>
           <div className="scroll-container" ref={scrollRefs.accommodations}>
             {luxuryAccommodations.map(accommodation => (
               <div key={accommodation.name} className="accommodation-card">
@@ -118,7 +100,7 @@ const GetStarted = () => {
         </div>
 
         <div className="scroll-widget">
-          <h2>Trending Topics</h2>
+          <h2>Trending</h2>
           <div className="scroll-container" ref={scrollRefs.topics}>
             {trendingTopics.map(topic => (
               <div key={topic} className="topic-card">

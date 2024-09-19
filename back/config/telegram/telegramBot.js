@@ -9,7 +9,7 @@ const bot = new TelegramBot(telegramBotUri, { polling: true });
 bot.onText(/\/help/, (msg) => {
   const chatId = msg.chat.id;
   const commands = [
-    '- Create a new event: /createevent City/Description/DDMMYYYY\n',
+    '- Create a new event: /createevent City/Description/DDMMYY/"Link"\n',
     '- Delete an existing event: /deleteevent City/Exact Description\n'
     // Add all your other commands here
   ];
@@ -22,31 +22,37 @@ bot.onText(/\/help/, (msg) => {
 
 //Create event
 bot.onText(/\/createevent (.+)/, async (msg, match) => {
-    const chatId = msg.chat.id;
-    const eventData = match[1].split('/');
-    if (eventData.length === 3) {
-      const [city, description, date] = eventData;
-      
-      if (!validateDate(date)) {
-        bot.sendMessage(chatId, 'Invalid date format. Please use DDMMYY.');
-        return;
-      }
-  
-      const formattedDate = formatDate(date);
-      
-      try {
-        const newEvent = new Event({ city, description, date: formattedDate });
-        await newEvent.save();
-        bot.sendMessage(chatId, 'Event created successfully!');
-        console.log('New event created:', newEvent);
-      } catch (error) {
-        console.error('Error creating event:', error);
-        bot.sendMessage(chatId, 'Error creating event. Please try again.');
-      }
-    } else {
-      bot.sendMessage(chatId, 'Invalid format. Please use: /createevent City/Description/DDMMYY');
+  const chatId = msg.chat.id;
+  const eventData = match[1].split(/\/(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+  if (eventData.length === 4) {
+    const [city, description, date, link] = eventData;
+    
+    if (!city || !description || !date) {
+      bot.sendMessage(chatId, 'Invalid format. Please use: /createevent City/Description/DDMMYY/"Link"');
+      return;
     }
-  });
+
+    if (!validateDate(date)) {
+      bot.sendMessage(chatId, 'Invalid date format. Please use DDMMYY.');
+      return;
+    }
+
+    const formattedDate = formatDate(date);
+    const cleanLink = link.replace(/^"|"$/g, '').trim(); // Remove surrounding quotes
+    
+    try {
+      const newEvent = new Event({ city, description, date: formattedDate, link: cleanLink });
+      await newEvent.save();
+      bot.sendMessage(chatId, 'Event created successfully!');
+      console.log('New event created:', newEvent);
+    } catch (error) {
+      console.error('Error creating event:', error);
+      bot.sendMessage(chatId, 'Error creating event. Please try again.');
+    }
+  } else {
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createevent City/Description/DDMMYY/"Link"');
+  }
+});
 
 
 

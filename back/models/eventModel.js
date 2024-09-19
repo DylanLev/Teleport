@@ -13,6 +13,10 @@ const eventSchema = mongoose.Schema({
     date: {
         type: String,
         required: true
+    },
+    link: {
+        type: String,
+        required: false // Set to true if you want it to be a required field
     }
 }, {
     timestamps: true

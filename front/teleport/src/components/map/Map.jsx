@@ -4,6 +4,9 @@ import 'leaflet/dist/leaflet.css';
 import "./Map.scss";
 import { getCityCoordinates } from './coordinates.js';
 
+const API_URL = 'http://localhost:5000/api/events';
+const POLL_INTERVAL = 5000; // 5 seconds
+
 const Map = () => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
@@ -12,7 +15,10 @@ const Map = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/events');
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         console.log('Fetched events:', data);
         setEvents(data);
@@ -22,7 +28,7 @@ const Map = () => {
     };
 
     fetchEvents();
-    const interval = setInterval(fetchEvents, 5000); // Poll every 5 seconds
+    const interval = setInterval(fetchEvents, POLL_INTERVAL);
 
     return () => clearInterval(interval);
   }, []);
@@ -50,7 +56,11 @@ const Map = () => {
         const coordinates = getCityCoordinates(event.city);
         if (coordinates) {
           const eventMarker = L.marker([coordinates.lat, coordinates.lon]).addTo(mapInstanceRef.current);
-          eventMarker.bindPopup(`${event.city}: ${event.description} on ${event.date}`);
+          eventMarker.bindPopup(`
+            <strong>${event.city}</strong>: ${event.description}<br>
+            Date: ${event.date}
+            ${event.link ? `<br><a href="${event.link}" target="_blank" rel="noopener noreferrer">Event Link</a>` : ''}
+          `);
           markers.push(eventMarker);
         } else {
           console.warn(`Coordinates not found for city: ${event.city}`);
@@ -64,7 +74,7 @@ const Map = () => {
       }
     }
 
-    console.log('Events updated:', events);
+    console.log('Events updated:', events.map(e => ({...e, link: e.link || 'No link provided'})));
   }, [events]);
 
   return <div ref={mapRef} style={{ height: '400px', width: '100%' }}></div>;
