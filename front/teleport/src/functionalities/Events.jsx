@@ -49,7 +49,7 @@ const Events = () => {
 
   return (
     <div className={styles.events}>
-      <h2>Upcoming Events</h2>
+      <h2>Upcoming Events (latest ➜)</h2>
       <div className={styles.scrollContainer} ref={scrollRef}>
         {events.map(event => (
           <div 

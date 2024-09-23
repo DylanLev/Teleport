@@ -1,9 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import Select from 'react-select';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import styles from '../functionalities/CitySelector.module.scss';
+import cityToCountryCode from '../constants/cityToCountryCode.js';
 
 const CitySelector = ({ continents, cities }) => {
+  const navigate = useNavigate();
   const [selectedContinent, setSelectedContinent] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -19,16 +22,21 @@ const CitySelector = ({ continents, cities }) => {
     );
   }, [selectedContinent, cities, searchTerm]);
 
+  const handleCityClick = (city) => {
+    const countryCode = cityToCountryCode[city] || 'unknown';
+    navigate(`/home/view/${countryCode}/${city}`);
+  };
+
   return (
     <div className={styles.citySelector}>
       <div className={styles.controls}>
-      <Select
-        options={continentOptions}
-        onChange={setSelectedContinent}
-        value={selectedContinent}
-        placeholder="Select a continent"
-        className={styles.continentSelect}
-        classNamePrefix="react-select"
+        <Select
+          options={continentOptions}
+          onChange={setSelectedContinent}
+          value={selectedContinent}
+          placeholder="Select a continent"
+          className={styles.continentSelect}
+          classNamePrefix="react-select"
         />
         <input
           type="text"
@@ -51,6 +59,7 @@ const CitySelector = ({ continents, cities }) => {
             className={styles.cityCard}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => handleCityClick(city)}
           >
             <img 
               src={`/cityimages/${city.toLowerCase().replace(' ', '-')}.jpg`} 

@@ -49,21 +49,30 @@ app.get('/api/groups', async (req, res) => {
 
 
 // Function to fetch and cache weather data
-const fetchAndCacheWeather = async (countryCode) => {
+const fetchAndCacheWeather = async (city) => {
   try {
-   
-    const LATITUDE = coordinates[countryCode.toUpperCase()].lat;
-    const LONGITUDE = coordinates[countryCode.toUpperCase()].lon;
+    const cityData = coordinates.find(item => item.city.toLowerCase() === city.toLowerCase());
+
+    if (!cityData) {
+      throw new Error(`City "${city}" not found in coordinates data`);
+    }
+
+    const url = `https://api.open-meteo.com/v1/forecast`;
+    const params = {
+      latitude: cityData.lat,
+      longitude: cityData.lon,
+      hourly: 'temperature_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m',
+      forecast_days: 1
+    };
+
+    const response = await axios.get(url, { params, timeout: 5000 });
     
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${LATITUDE}&longitude=${LONGITUDE}&hourly=temperature_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m&forecast_days=1`;
-    const response = await axios.get(url);
-  
     const weatherData = response.data;
-    cache.set(`weather_${countryCode}`, { data: weatherData, timestamp: Date.now() });
+    cache.set(`weather_${city.toLowerCase()}`, weatherData);
     return weatherData;
   } catch (error) {
-    console.error(`Error fetching weather for ${countryCode}:`, error);
-    throw error; // Re-throw the error so it can be caught in the route handler
+    console.error(`Error fetching weather for ${city}:`, error.message);
+    throw error;
   }
 };
 
@@ -160,34 +169,48 @@ app.get('/api/currency-exchange/:countryCode', async (req, res) => {
   }
 });
 
-app.get('/api/weather/:countryCode', async (req, res) => {
-  const { countryCode } = req.params;
-  const cacheKey = `weather_${countryCode}`;
-  const cachedData = cache.get(cacheKey);
-
-  if (cachedData && (Date.now() - cachedData.timestamp < 24 * 60 * 60 * 1000)) {
-    return res.json(cachedData.data);
-  }
+// Express route handler
+app.get('/api/weather/:city', async (req, res) => {
+  const city = req.params.city.toLowerCase();
+  const cacheKey = `weather_${city}`;
 
   try {
-    const weatherData = await fetchAndCacheWeather(countryCode);
+    let weatherData = cache.get(cacheKey);
+
+    if (!weatherData) {
+      weatherData = await fetchAndCacheWeather(city);
+    }
+
     res.json(weatherData);
   } catch (error) {
-    console.error('Error in weather route:', error);
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.error(error.response.data);
-      console.error(error.response.status);
-      console.error(error.response.headers);
-    } else if (error.request) {
-      // The request was made but no response was received
-      console.error(error.request);
+    console.error('Error in weather route:', error.message);
+    
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        console.error('Response error:', error.response.data);
+        res.status(error.response.status).json({ 
+          error: 'External API error', 
+          details: error.response.data 
+        });
+      } else if (error.request) {
+        console.error('Request error:', error.request);
+        res.status(503).json({ 
+          error: 'Unable to reach weather service', 
+          details: 'The request was made but no response was received' 
+        });
+      } else {
+        console.error('Error', error.message);
+        res.status(500).json({ 
+          error: 'Unexpected error', 
+          details: error.message 
+        });
+      }
     } else {
-      // Something happened in setting up the request that triggered an Error
-      console.error('Error', error.message);
+      res.status(500).json({ 
+        error: 'Internal server error', 
+        details: error.message 
+      });
     }
-    res.status(500).json({ error: 'Failed to fetch weather data', details: error.message });
   }
 });
 

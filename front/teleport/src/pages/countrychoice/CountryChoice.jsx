@@ -35,6 +35,8 @@ const CountryChoice = () => {
     { name: 'Greece', code: 'GR' },
     { name: 'Turkey', code: 'TR' },
     { name: 'New Zealand', code: 'NZ' },
+    { name: "United Arab Emirates", code: "AE" },
+    { name: "Singapore", code: "SG" }
   ];
 
   useEffect(() => {

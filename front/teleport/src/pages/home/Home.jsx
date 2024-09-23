@@ -4,10 +4,6 @@ import './Home.scss';
 import News from '../../functionalities/News.jsx';
 import Weather from '../../functionalities/Weather.jsx'
 import countries from "../../constants/countries.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRadio } from '@fortawesome/free-solid-svg-icons';
-import Radio from '../../functionalities/Radio.jsx';
-import useRadio from '../../../services/useRadio.js';
 import Currency from '../../functionalities/Currency.jsx';
 import Language from '../../functionalities/Language.jsx';
 import History from '../../functionalities/History.jsx';
@@ -16,50 +12,16 @@ import History from '../../functionalities/History.jsx';
 
 const Home = () => {
   const { countryCode } = useParams();
+  const { cityName } = useParams();
+
   const navigate = useNavigate();
   const [countryName, setCountryName] = useState('');
   const [localDate, setLocalDate] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
   const videoNumber = useMemo(() => Math.floor(Math.random() * 3) + 1, []);
-  const [cityName, setCityName] = useState('');
   // Generate unique key for page refresh
   const videoKey = useMemo(() => Date.now(), []);
-  const { isPlaying, toggleRadio } = useRadio(countryName);
-  const [exchangeRate, setExchangeRate] = useState(null);
-
-
-
-  // Extract city name from timezone
-  const getCityFromTimezone = (timezone) => {
-    return timezone.split('/').pop().replace(/_/g, ' ');
-  };
-
-  // Fetch weather data
-  const fetchWeatherData = async (code) => {
-    const API_KEY = import.meta.env.VITE_WEATHER;
-
-    const country = countries[code];
-    if (!country) {
-      console.error("Country not found");
-      return;
-    }
-    
-    const city = getCityFromTimezone(country.timezone);
-    setCityName(city);
-    const url = `https://api.weatherbit.io/v2.0/current?key=${API_KEY}&city=${encodeURIComponent(city)}&country=${code}`;
   
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.data && data.data.length > 0) {
-        setWeatherData(data.data[0]);
-      } else {
-        console.error("No weather data found");
-      }
-    } catch (error) {
-      console.error("Error in retrieving weather data:", error);
-    }
-  };
+
 
   useEffect(() => {
     if (!countryCode) {
@@ -91,8 +53,7 @@ const Home = () => {
     updateLocalTime();
     const timer = setInterval(updateLocalTime, 1000);
 
-    // Fetch weather data
-    fetchWeatherData(code);
+    
 
     return () => clearInterval(timer);
   }, [countryCode, navigate]);
@@ -110,11 +71,8 @@ const Home = () => {
       <div className="video-overlay"></div>
       <div className="home">
         <header>
-          <h1>{countryName}</h1>
+          <h1>{cityName}</h1>
           <p className="date">{localDate}</p>
-          <div className="radio-icon" onClick={toggleRadio}>
-              <FontAwesomeIcon icon={faRadio} color={isPlaying ? "green" : "white"} />
-          </div>
         </header>
       
         <main>
@@ -123,12 +81,11 @@ const Home = () => {
     <Weather 
             countryName={countryName}
             countryCode={countryCode}
-            cityName={cityName}
     />  
 
-    <Currency 
+    {countryCode != 'us' && <Currency 
       countryCode={countryCode} 
-    />
+    />}
 
     <section className="economics">
       <h2>Economic Indicators</h2>

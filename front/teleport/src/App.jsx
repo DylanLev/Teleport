@@ -67,7 +67,7 @@ function App() {
       
     },
     {
-      path: "/home/view/:countryCode",
+      path: "/home/view/:countryCode/:cityName",
       element: <Home />,
     },
     

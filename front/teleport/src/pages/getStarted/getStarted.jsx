@@ -6,6 +6,7 @@ import Map from "../../components/map/Map.jsx";
 import Events from "../../functionalities/Events.jsx";
 import CitySelector from '../../functionalities/CitySelector.jsx'; 
 import Group from '../../functionalities/Groups.jsx';
+import cities from "../../constants/cities.js";
 
 
 const GetStarted = () => {
@@ -26,14 +27,7 @@ const GetStarted = () => {
 
   const continents = ['Europe', 'Asia', 'North America', 'South America', 'Africa', 'Australia'];
   
-  const cities = {
-    'Europe': ['Marbella', 'Paris', 'London'],
-    'Asia': ['Dubai', 'Tokyo', 'Singapore', "Shanghai"],
-    'North America': ['New York', 'Los Angeles', 'Miami'],
-    'South America': ['Rio de Janeiro', 'Buenos Aires', 'Cartagena'],
-    'Africa': ['Cape Town', 'Marrakech', 'Zanzibar'],
-    'Australia': ['Sydney', 'Melbourne', 'Gold Coast']
-  };
+  
 
 
   const luxuryAccommodations = [
