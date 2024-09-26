@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchExchangeRate } from '../../services/currencyService';
 import currencyMap from '../../../../back/config/currencies';
-import supportedCurrencies from '../constants/supportedCurrencies';
-
 
 const Currency = ({ countryCode }) => {
   const [exchangeRate, setExchangeRate] = useState(null);
@@ -14,11 +12,7 @@ const Currency = ({ countryCode }) => {
       if (countryCode) {
         setIsLoading(true);
         const currencyCode = getCurrencyCode(countryCode);
-        if (!supportedCurrencies.includes(currencyCode)) {
-          setError('Currency for this country is not supported yet');
-          setIsLoading(false);
-          return;
-        }
+        
         try {
           const data = await fetchExchangeRate(currencyCode);
           setExchangeRate(data);
@@ -52,13 +46,12 @@ const Currency = ({ countryCode }) => {
       <h2>Exchange Rate</h2>
       {isLoading ? (
         <p>Loading exchange rate data...</p>
-      ) : exchangeRate && exchangeRate.data ? (
+      ) : exchangeRate ? (
         <div>
-          {Object.entries(exchangeRate.data).map(([currency, rate]) => (
-            <p key={currency}>
-              1 USD ≈ {formatRate(rate)} {currency}
-            </p>
-          ))}
+          <p>
+            1 {exchangeRate.base_code} ≈ {formatRate(exchangeRate.conversion_rate)} {exchangeRate.target_code}
+          </p>
+          <p>Last updated: {exchangeRate.time_last_update_utc}</p>
         </div>
       ) : (
         <p>No exchange rate data available.</p>

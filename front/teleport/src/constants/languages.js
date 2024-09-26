@@ -39,8 +39,8 @@ const languages = {
   VN: 'Vietnamese',
   CL: 'Spanish',
   CO: 'Spanish',
-  TZ: 'Swahili',
-  KE: 'Swahili',
+  TZ: 'English',
+  KE: 'English',
   GH: 'English',
   SN: 'French'
 };

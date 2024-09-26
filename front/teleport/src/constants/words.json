@@ -15,7 +15,9 @@
       "tr": "macera",
       "ko": "모험 (moheom)",
       "mi": "haerenga",
-      "he": "הרפתקה (harpatka)"
+      "he": "הרפתקה (harpatka)",
+      "cz":"dobrodružství",
+      "ro": "aventură"
     },
     "butterfly": {
       "fr": "papillon",
@@ -33,7 +35,9 @@
       "tr": "kelebek",
       "ko": "나비 (nabi)",
       "mi": "pepepe",
-      "he": "פרפר (parpar)"
+      "he": "פרפר (parpar)",
+      "cz": "motýl",
+      "ro": "fluture"
     },
     "courage": {
       "fr": "courage",
@@ -51,7 +55,9 @@
       "tr": "cesaret",
       "ko": "용기 (yonggi)",
       "mi": "maia",
-      "he": "אומץ (ometz)"
+      "he": "אומץ (ometz)",
+      "cz": "odvaha",
+      "ro": "curaj"
     },
     "dream": {
       "fr": "rêve",
@@ -69,7 +75,9 @@
       "tr": "rüya",
       "ko": "꿈 (kkum)",
       "mi": "moemoeā",
-      "he": "חלום (halom)"
+      "he": "חלום (halom)",
+      "cz": "sen",
+      "ro": "vis"
     },
     "freedom": {
       "fr": "liberté",
@@ -87,7 +95,9 @@
       "tr": "özgürlük",
       "ko": "자유 (jayu)",
       "mi": "rangatiratanga",
-      "he": "חירות (herut)"
+      "he": "חירות (herut)",
+      "cz": "svoboda",
+      "ro": "libertate"
     },
     "harmony": {
       "fr": "harmonie",
@@ -105,7 +115,10 @@
       "tr": "uyum",
       "ko": "조화 (johwa)",
       "mi": "rangimārie",
-      "he": "הרמוניה (harmonya)"
+      "he": "הרמוניה (harmonya)",
+      "cz": "harmonie",
+      "ro": "armonie"
+
     },
     "journey": {
       "fr": "voyage",
@@ -123,7 +136,9 @@
       "tr": "yolculuk",
       "ko": "여행 (yeohaeng)",
       "mi": "haerenga",
-      "he": "מסע (masa)"
+      "he": "מסע (masa)",
+      "cz": "cesta",
+      "ro": "călătorie"
     },
     "kindness": {
       "fr": "gentillesse",
@@ -141,7 +156,9 @@
       "tr": "nezaket",
       "ko": "친절 (chinjeol)",
       "mi": "ngākau atawhai",
-      "he": "נדיבות (nedivut)"
+      "he": "נדיבות (nedivut)",
+      "cz": "laskavost",
+      "ro": "bunătate"
     },
     "laughter": {
       "fr": "rire",
@@ -159,7 +176,9 @@
       "tr": "kahkaha",
       "ko": "웃음 (useum)",
       "mi": "katakata",
-      "he": "צחוק (tzchok)"
+      "he": "צחוק (tzchok)",
+      "cz": "smích",
+      "ro": "râs"
     },
     "mystery": {
       "fr": "mystère",
@@ -177,7 +196,9 @@
       "tr": "gizem",
       "ko": "신비 (sinbi)",
       "mi": "mea ngaro",
-      "he": "מסתורין (mistorin)"
+      "he": "מסתורין (mistorin)",
+      "cz": "záhada",
+      "ro": "mister"
     },
     "nature": {
       "fr": "nature",
@@ -195,7 +216,9 @@
       "tr": "doğa",
       "ko": "자연 (jayeon)",
       "mi": "taiao",
-      "he": "טבע (teva)"
+      "he": "טבע (teva)",
+      "cz": "příroda",
+       "ro": "natură"
     },
     "opportunity": {
       "fr": "opportunité",
@@ -213,7 +236,9 @@
       "tr": "fırsat",
       "ko": "기회 (gihoe)",
       "mi": "huarahi",
-      "he": "הזדמנות (hizdamnut)"
+      "he": "הזדמנות (hizdamnut)",
+      "cz": "příležitost",
+      "ro": "oportunitate"
     },
     "passion": {
       "fr": "passion",
@@ -231,7 +256,9 @@
       "tr": "tutku",
       "ko": "열정 (yeoljeong)",
       "mi": "ngākau nui",
-      "he": "תשוקה (tshuka)"
+      "he": "תשוקה (tshuka)",
+      "cz": "vášeň",
+      "ro": "pasiune"
     },
     "reflection": {
       "fr": "réflexion",
@@ -249,7 +276,9 @@
       "tr": "yansıma",
       "ko": "성찰 (seongchal)",
       "mi": "whakaaro",
-      "he": "השתקפות (histaklut)"
+      "he": "השתקפות (histaklut)",
+      "cz": "reflexe",
+      "ro": "reflecție"
     },
     "serenity": {
       "fr": "sérénité",
@@ -267,7 +296,9 @@
       "tr": "huzur",
       "ko": "평화 (pyeonghwa)",
       "mi": "rangimārie",
-      "he": "שקט (sheket)"
+      "he": "שקט (sheket)",
+      "cz": "klid",
+      "ro": "seninătate"
     },
     "tradition": {
       "fr": "tradition",
@@ -285,7 +316,9 @@
       "tr": "gelenek",
       "ko": "전통 (jeontong)",
       "mi": "tikanga",
-      "he": "מסורת (masoret)"
+      "he": "מסורת (masoret)",
+      "cz": "tradice",
+      "ro": "tradiție"
     },
     "unity": {
       "fr": "unité",
@@ -303,7 +336,9 @@
       "tr": "birlik",
       "ko": "일치 (ilchi)",
       "mi": "kotahitanga",
-      "he": "אחדות (ahdut)"
+      "he": "אחדות (ahdut)",
+      "cz": "jednota",
+      "ro": "unitate"
     },
     "victory": {
       "fr": "victoire",
@@ -321,7 +356,9 @@
       "tr": "zafer",
       "ko": "승리 (seungri)",
       "mi": "wikitōria",
-      "he": "ניצחון (nitzahon)"
+      "he": "ניצחון (nitzahon)",
+      "cz": "vítězství",
+      "ro": "victorie"
     },
     "wisdom": {
       "fr": "sagesse",
@@ -339,7 +376,9 @@
       "tr": "bilgelik",
       "ko": "지혜 (jihye)",
       "mi": "mātauranga",
-      "he": "חוכמה (hochma)"
+      "he": "חוכמה (hochma)",
+      "cz": "moudrost",
+      "ro": "înțelepciune"
     },
     "wonder": {
       "fr": "émerveillement",
@@ -357,7 +396,9 @@
       "tr": "harika",
       "ko": "경이 (gyeong-i)",
       "mi": "miharo",
-      "he": "פלא (pele)"
+      "he": "פלא (pele)",
+      "cz": "zázrak",
+      "ro": "minune"
     },
     "balance": {
       "fr": "équilibre",
@@ -375,7 +416,9 @@
       "tr": "denge",
       "ko": "균형 (gyunhyeong)",
       "mi": "taurite",
-      "he": "איזון (izun)"
+      "he": "איזון (izun)",
+      "cz": "váhy",
+      "ro": "echilibru"
     },
     "curiosity": {
       "fr": "curiosité",
@@ -393,7 +436,9 @@
       "tr": "merak",
       "ko": "호기심 (hogisim)",
       "mi": "hiahia",
-      "he": "סקרנות (sakranut)"
+      "he": "סקרנות (sakranut)",
+      "cz":"zvědavost",
+      "ro": "curiozitate"
     },
     "destiny": {
       "fr": "destin",
@@ -411,7 +456,9 @@
       "tr": "kader",
       "ko": "운명 (unmyeong)",
       "mi": "ā-hua",
-      "he": "גורל (goral)"
+      "he": "גורל (goral)",
+      "cz": "osud",
+      "ro": "destin"
     },
     "empathy": {
     "fr": "empathie",
@@ -429,7 +476,9 @@
     "tr": "empati",
     "ko": "공감 (gongam)",
     "mi": "aroha",
-    "he": "אמפתיה (empatya)"
+    "he": "אמפתיה (empatya)",
+    "cz": "empatie",
+    "ro": "empatie"
   },
   "patience": {
   "fr": "patience",
@@ -447,7 +496,9 @@
   "tr": "sabır",
   "ko": "인내 (innae)",
   "mi": "manawanui",
-  "he": "סבלנות (savlanut)"
+  "he": "סבלנות (savlanut)",
+  "cz": "trpělivost",
+  "ro": "răbdare"
 },
 
 "strength": {
@@ -466,7 +517,9 @@
   "tr": "güç",
   "ko": "힘 (him)",
   "mi": "kaiārahi",
-  "he": "כוח (koach)"
+  "he": "כוח (koach)",
+  "cz": "trpělivost",
+  "ro": "forță"
 },
 
 
@@ -486,7 +539,10 @@
   "tr": "umut",
   "ko": "희망 (huimang)",
   "mi": "tūmanako",
-  "he": "תקווה (tikva)"
+  "he": "תקווה (tikva)",
+  "cz": "naděje",
+  "ro": "speranță"
+
 },
 
 "friendship": {
@@ -505,7 +561,10 @@
   "tr": "arkadaşlık",
   "ko": "우정 (ujeong)",
   "mi": "whanaungatanga",
-  "he": "חברות (chaverut)"
+  "he": "חברות (chaverut)",
+  "cz": "přátelství",
+  "ro": "prietenie"
+
 },
 
 
@@ -526,7 +585,10 @@
   "tr": "hırs",
   "ko": "야망 (yamang)",
   "mi": "whakakotahi",
-  "he": "שאיפה (she'ifa)"
+  "he": "שאיפה (she'ifa)",
+  "cz": "ctižádost",
+  "ro": "ambiție"
+
 },
 
 "innovation": {
@@ -545,7 +607,10 @@
   "tr": "inovasyon",
   "ko": "혁신 (hyeoksin)",
   "mi": "whakawhanake",
-  "he": "חדשנות (chadshanut)"
+  "he": "חדשנות (chadshanut)",
+  "cz": "inovace",
+  "ro": "inovație"
+
 },
 
 "collaboration": {
@@ -564,7 +629,10 @@
   "tr": "iş birliği",
   "ko": "협력 (hyeobryeok)",
   "mi": "mahi tahi",
-  "he": "שיתוף פעולה (shituf pe'ula)"
+  "he": "שיתוף פעולה (shituf pe'ula)",
+  "cz": "spolupráce",
+  "ro": "colaborare"
+
 },
 
 "transformation": {
@@ -583,7 +651,10 @@
   "tr": "dönüşüm",
   "ko": "변형 (byeonhyeong)",
   "mi": "hurihanga",
-  "he": "שינוי (shinui)"
+  "he": "שינוי (shinui)",
+  "cz": "transformace",
+  "ro": "transformare"
+
 },
 
 "exploration": {
@@ -602,7 +673,10 @@
   "tr": "keşif",
   "ko": "탐험 (tamheom)",
   "mi": "kōkiri",
-  "he": "חקירה (hakira)"
+  "he": "חקירה (hakira)",
+  "cz": "průzkum",
+  "ro": "explorare"
+
 },
 
 "challenge": {
@@ -621,7 +695,10 @@
   "tr": "meydan okuma",
   "ko": "도전 (dojeon)",
   "mi": "wero",
-  "he": "אתגר (etgar)"
+  "he": "אתגר (etgar)",
+  "cz": "výzva",
+  "ro": "provocare"
+
 },
 
 "gratitude": {
@@ -640,7 +717,10 @@
   "tr": "minnettarlık",
   "ko": "감사 (gamsa)",
   "mi": "whakawhetai",
-  "he": "הכרת תודה (hakarat toda)"
+  "he": "הכרת תודה (hakarat toda)",
+  "cz": "vděčnost",
+  "ro": "recunoștință"
+
 },
 
 "creativity": {
@@ -659,7 +739,10 @@
   "tr": "yaratıcılık",
   "ko": "창의성 (changeuiseong)",
   "mi": "auahatanga",
-  "he": "יצירתיות (yetziratiyut)"
+  "he": "יצירתיות (yetziratiyut)",
+  "cz": "tvořivost",
+  "ro": "creativitate"
+
 },
 "passport": {
   "fr": "passeport",
@@ -677,7 +760,10 @@
   "tr": "pasaport",
   "ko": "여권 (yeogwon)",
   "mi": "pātea",
-  "he": "דרכון (darkon)"
+  "he": "דרכון (darkon)",
+  "cz": "pas",
+  "ro": "pașaport"
+
 },
 "ticket": {
   "fr": "billet",
@@ -695,7 +781,10 @@
   "tr": "bilet",
   "ko": "티켓 (tiket)",
   "mi": "tiiti",
-  "he": "כרטיס (kartis)"
+  "he": "כרטיס (kartis)",
+  "cz": "lístek",
+  "ro": "bilet"
+
 },
 "explorer": {
   "fr": "explorateur",
@@ -713,7 +802,10 @@
   "tr": "kaşif",
   "ko": "탐험가 (tamheomga)",
   "mi": "kōkiri",
-  "he": "חוקר (choker)"
+  "he": "חוקר (choker)",
+  "cz": "badatel",
+  "ro": "explorator"
+
 },
 "landscape": {
   "fr": "paysage",
@@ -731,7 +823,10 @@
   "tr": "manzara",
   "ko": "풍경 (punggyeong)",
   "mi": "whenua",
-  "he": "נוף (nof)"
+  "he": "נוף (nof)",
+  "cz": "krajina",
+  "ro": "peisaj"
+
 },
 "culture": {
   "fr": "culture",
@@ -749,7 +844,10 @@
   "tr": "kültür",
   "ko": "문화 (munhwa)",
   "mi": "ahurea",
-  "he": "תרבות (tarbut)"
+  "he": "תרבות (tarbut)",
+  "cz": "kultura",
+  "ro": "cultură"
+
 },
 "experience": {
   "fr": "expérience",
@@ -767,7 +865,9 @@
   "tr": "deneyim",
   "ko": "경험 (gyeongheom)",
   "mi": "wānanga",
-  "he": "ניסיון (nisayon)"
+  "he": "ניסיון (nisayon)",
+  "cz": "zažít",
+  "ro": "experiență"
 },
 "hospitality": {
   "fr": "hospitalité",
@@ -785,7 +885,10 @@
   "tr": "misafirperverlik",
   "ko": "환대 (hwandae)",
   "mi": "manuhiri",
-  "he": "אירוח (iruach)"
+  "he": "אירוח (iruach)",
+  "cz": "pohostinství",
+  "ro": "ospitalitate"
+
 },
     "joy": {
       "fr": "joie",
@@ -803,7 +906,10 @@
       "tr": "sevinç",
       "ko": "기쁨 (gippeum)",
       "mi": "harikoa",
-      "he": "שמחה (simcha)"
+      "he": "שמחה (simcha)",
+      "cz": "radost",
+      "ro": "bucurie"
+
     },
     "sadness": {
       "fr": "tristesse",
@@ -821,7 +927,10 @@
       "tr": "üzüntü",
       "ko": "슬픔 (seulpeum)",
       "mi": "pōuri",
-      "he": "עצב (etzev)"
+      "he": "עצב (etzev)",
+      "cz": "smutek",
+      "ro": "tristețe"
+
     },
     "anger": {
       "fr": "colère",
@@ -839,7 +948,10 @@
       "tr": "öfke",
       "ko": "분노 (bunno)",
       "mi": "riri",
-      "he": "כעס (ka'as)"
+      "he": "כעס (ka'as)",
+      "cz": "hněv",
+      "ro": "furie"
+
     },
     "fear": {
       "fr": "peur",
@@ -857,7 +969,10 @@
       "tr": "korku",
       "ko": "두려움 (duryeoum)",
       "mi": "mataku",
-      "he": "פחד (pachad)"
+      "he": "פחד (pachad)",
+      "cz": "strach",
+      "ro": "frică"
+
     },
     "surprise": {
       "fr": "surprise",
@@ -875,7 +990,10 @@
       "tr": "sürpriz",
       "ko": "놀람 (nollam)",
       "mi": "ohorere",
-      "he": "הפתעה (hafta'a)"
+      "he": "הפתעה (hafta'a)",
+      "cz": "překvapení",
+      "ro": "surpriză"
+
     },
     "disgust": {
       "fr": "dégoût",
@@ -893,7 +1011,10 @@
       "tr": "iğrenme",
       "ko": "혐오 (hyeomo)",
       "mi": "whakarihariha",
-      "he": "גועל (go'al)"
+      "he": "גועל (go'al)",
+      "cz": "hnus",
+      "ro": "dezgust"
+
     },
     "excitement": {
       "fr": "excitation",
@@ -911,7 +1032,10 @@
       "tr": "heyecan",
       "ko": "흥분 (heungbun)",
       "mi": "ngākau pīata",
-      "he": "התרגשות (hitragshut)"
+      "he": "התרגשות (hitragshut)",
+      "cz": "vzrušení",
+      "ro": "entuziasm"
+
     },
     "contentment": {
       "fr": "contentement",
@@ -929,7 +1053,10 @@
       "tr": "memnuniyet",
       "ko": "만족 (manjok)",
       "mi": "ngākau mārie",
-      "he": "שביעות רצון (svi'ut ratzon)"
+      "he": "שביעות רצון (svi'ut ratzon)",
+      "cz": "spokojenost",
+      "ro": "mulțumire"
+
     },
     "loneliness": {
       "fr": "solitude",
@@ -947,7 +1074,10 @@
       "tr": "yalnızlık",
       "ko": "외로움 (oeroum)",
       "mi": "mokemoke",
-      "he": "בדידות (bedidut)"
+      "he": "בדידות (bedidut)",
+      "cz": "samota",
+      "ro": "singurătate"
+
     },
     "guilt": {
       "fr": "culpabilité",
@@ -965,7 +1095,10 @@
       "tr": "suçluluk",
       "ko": "죄책감 (joechaekgam)",
       "mi": "hara",
-      "he": "אשמה (ashma)"
+      "he": "אשמה (ashma)",
+      "cz": "vina",
+      "ro": "vinovăție"
+
     },
     "pride": {
       "fr": "fierté",
@@ -983,7 +1116,10 @@
       "tr": "gurur",
       "ko": "자부심 (jabusim)",
       "mi": "whakahīhī",
-      "he": "גאווה (ga'ava)"
+      "he": "גאווה (ga'ava)",
+      "cz": "hrdost",
+      "ro": "mândrie"
+
     },
     "jealousy": {
       "fr": "jalousie",
@@ -1001,7 +1137,10 @@
       "tr": "kıskançlık",
       "ko": "질투 (jiltu)",
       "mi": "hae",
-      "he": "קנאה (kin'a)"
+      "he": "קנאה (kin'a)",
+      "cz": "žárlivost",
+      "ro": "gelozie"
+
     },
     "anxiety": {
       "fr": "anxiété",
@@ -1019,7 +1158,10 @@
       "tr": "kaygı",
       "ko": "불안 (buran)",
       "mi": "māharahara",
-      "he": "חרדה (charada)"
+      "he": "חרדה (charada)",
+      "cz": "úzkost",
+      "ro": "anxietate"
+
     },
 
     "disappointment": {
@@ -1038,7 +1180,10 @@
       "tr": "hayal kırıklığı",
       "ko": "실망 (silmang)",
       "mi": "pāpōuri",
-      "he": "אכזבה (achzava)"
+      "he": "אכזבה (achzava)",
+      "cz": "zklamání",
+      "ro": "dezamăgire"
+
     },
     
     "regret": {
@@ -1057,7 +1202,10 @@
       "tr": "pişmanlık",
       "ko": "후회 (huhoe)",
       "mi": "whakaaroha",
-      "he": "חרטה (charata)"
+      "he": "חרטה (charata)",
+      "cz": "litovat",
+      "ro": "regret"
+
     },
     "embarrassment": {
       "fr": "embarras",
@@ -1075,7 +1223,10 @@
       "tr": "utanç",
       "ko": "당황 (danghwang)",
       "mi": "whakamā",
-      "he": "מבוכה (mevucha)"
+      "he": "מבוכה (mevucha)",
+      "cz": "rozpaky",
+      "ro": "jenă"
+
     },
     "enthusiasm": {
       "fr": "enthousiasme",
@@ -1092,7 +1243,10 @@
       "el": "ενθουσιασμός (enthousiasmós)",
       "tr": "coşku",
       "ko": "열정 (yeoljeong)",
-      "mi": "ngākau hihiko"
+      "mi": "ngākau hihiko",
+      "cz": "nadšení",
+      "ro": "entuziasm"
+
 },
 
 "imagination": {
@@ -1111,7 +1265,10 @@
   "tr": "hayal gücü",
   "ko": "상상력 (sangsangryeok)",
   "mi": "pohewatanga",
-  "he": "דמיון (dimyon)"
+  "he": "דמיון (dimyon)",
+  "cz": "představivost",
+   "ro": "imaginație"
+
 },
 
 "inspiration": {
@@ -1130,7 +1287,10 @@
   "tr": "ilham",
   "ko": "영감 (younggam)",
   "mi": "whakaaweawe",
-  "he": "השראה (hashra'a)"
+  "he": "השראה (hashra'a)",
+  "cz": "inspirace",
+  "ro": "inspirație"
+
 },
 
 "dog": {
@@ -1149,7 +1309,10 @@
     "tr": "köpek",
     "ko": "개 (gae)",
     "mi": "kurī",
-    "he": "כלב (kelev)"
+    "he": "כלב (kelev)",
+    "cz": "pes",
+    "ro": "câine"
+
 },
 "father": {
     "fr": "père",
@@ -1167,7 +1330,10 @@
     "tr": "baba",
     "ko": "아버지 (abeoji)",
     "mi": "matua tāne",
-    "he": "אבא (aba)"
+    "he": "אבא (aba)",
+    "cz": "otec",
+     "ro": "tată"
+
 },
 "car": {
     "fr": "voiture",
@@ -1185,7 +1351,9 @@
     "tr": "araba",
     "ko": "자동차 (jadongcha)",
     "mi": "motokā",
-    "he": "מכונית (mechonit)"
+    "he": "מכונית (mechonit)",
+    "cz": "auto",
+    "ro": "mașină"
 },
 "plane": {
     "fr": "avion",
@@ -1203,7 +1371,10 @@
     "tr": "uçak",
     "ko": "비행기 (bihaenggi)",
     "mi": "wakarere",
-    "he": "מטוס (matos)"
+    "he": "מטוס (matos)",
+    "cz": "rovina",
+    "ro": "avion"
+
 },
 "family": {
     "fr": "famille",
@@ -1221,7 +1392,10 @@
     "tr": "aile",
     "ko": "가족 (gajok)",
     "mi": "whānau",
-    "he": "משפחה (mishpacha)"
+    "he": "משפחה (mishpacha)",
+    "cz": "rodina",
+    "ro": "familie"
+
 },
 "fork": {
     "fr": "fourchette",
@@ -1239,7 +1413,10 @@
     "tr": "çatal",
     "ko": "포크 (pokeu)",
     "mi": "pune",
-    "he": "מזלג (mazleg)"
+    "he": "מזלג (mazleg)",
+    "cz": "vidlice",
+    "ro": "furculiță"
+
 },
 "tree": {
     "fr": "arbre",
@@ -1257,7 +1434,10 @@
     "tr": "ağaç",
     "ko": "나무 (namu)",
     "mi": "rākau",
-    "he": "עץ (etz)"
+    "he": "עץ (etz)",
+    "cz": "strom",
+    "ro": "copac"
+
 },
 "house": {
     "fr": "maison",
@@ -1275,7 +1455,10 @@
     "tr": "ev",
     "ko": "집 (jip)",
     "mi": "whare",
-    "he": "בית (bayit)"
+    "he": "בית (bayit)",
+    "cz": "dům",
+    "ro": "casă"
+
 },
 "book": {
     "fr": "livre",
@@ -1293,7 +1476,10 @@
     "tr": "kitap",
     "ko": "책 (chaek)",
     "mi": "pukapuka",
-    "he": "ספר (sefer)"
+    "he": "ספר (sefer)",
+    "cz": "rezervovat",
+    "ro": "carte"
+
 },
 "friend": {
     "fr": "ami",
@@ -1311,7 +1497,10 @@
     "tr": "arkadaş",
     "ko": "친구 (chingu)",
     "mi": "hoa",
-    "he": "חבר (chaver)"
+    "he": "חבר (chaver)",
+    "cz": "přítel",
+     "ro": "prieten"
+
 },
 "mother": {
 "fr": "mère",
@@ -1329,7 +1518,10 @@
 "tr": "anne",
 "ko": "어머니 (eomeoni)",
 "mi": "māmā",
-"he": "אמא (ima)"
+"he": "אמא (ima)",
+"cz": "matka",
+"ro": "mamă"
+
 },
 "sister": {
 "fr": "sœur",
@@ -1347,7 +1539,10 @@
 "tr": "kız kardeş",
 "ko": "자매 (jamae)",
 "mi": "tuahine",
-"he": "אחות (achot)"
+"he": "אחות (achot)",
+"cz": "sestra",
+"ro": "soră"
+
 },
 "brother": {
 "fr": "frère",
@@ -1365,7 +1560,10 @@
 "tr": "erkek kardeş",
 "ko": "형제 (hyeongje)",
 "mi": "tāne",
-"he": "אח (ach)"
+"he": "אח (ach)",
+"cz": "bratr",
+"ro": "frate"
+
 },
 "bread": {
 "fr": "pain",
@@ -1383,7 +1581,10 @@
 "tr": "ekmek",
 "ko": "빵 (ppang)",
 "mi": "parāoa",
-"he": "לחם (lechem)"
+"he": "לחם (lechem)",
+"cz": "chléb",
+"ro": "pâine"
+
 },
 "money": {
 "fr": "argent",
@@ -1401,7 +1602,10 @@
 "tr": "para",
 "ko": "돈 (don)",
 "mi": "moni",
-"he": "כסף (kesef)"
+"he": "כסף (kesef)",
+"cz": "peníze",
+ "ro": "bani"
+
 },
 "cat": {
 "fr": "chat",
@@ -1419,7 +1623,10 @@
 "tr": "kedi",
 "ko": "고양이 (goyangi)",
 "mi": "ngeru",
-"he": "חתול (chatul)"
+"he": "חתול (chatul)",
+"cz": "kočka",
+ "ro": "pisică"
+
 },
 "child": {
 "fr": "enfant",
@@ -1437,7 +1644,10 @@
 "tr": "çocuk",
 "ko": "아이 (ai)",
 "mi": "tamaiti",
-"he": "ילד (yeled)"
+"he": "ילד (yeled)",
+"cz": "dítě",
+"ro": "copil"
+
 },
 "teacher": {
 "fr": "enseignant",
@@ -1455,7 +1665,10 @@
 "tr": "öğretmen",
 "ko": "교사 (gyosa)",
 "mi": "kaiako",
-"he": "מורה (moreh)"
+"he": "מורה (moreh)",
+"cz": "učitel",
+"ro": "profesor"
+
 },
 "food": {
 "fr": "nourriture",
@@ -1473,7 +1686,10 @@
 "tr": "yiyecek",
 "ko": "음식 (eumsik)",
 "mi": "kai",
-"he": "אוכל (okhel)"
+"he": "אוכל (okhel)",
+"cz": "jídlo",
+"ro": "mâncare"
+
 },
 "water": {
 "fr": "eau",
@@ -1491,7 +1707,10 @@
 "tr": "su",
 "ko": "물 (mul)",
 "mi": "wai",
-"he": "מים (mayim)"
+"he": "מים (mayim)",
+"cz": "voda",
+"ro": "apă"
+
 },
 "sun": {
 "fr": "soleil",
@@ -1509,7 +1728,10 @@
 "tr": "güneş",
 "ko": "태양 (taeyang)",
 "mi": "ra",
-"he": "שמש (shemesh)"
+"he": "שמש (shemesh)",
+"cz": "slunce",
+ "ro": "soare"
+
 },
 "moon": {
 "fr": "lune",
@@ -1527,7 +1749,10 @@
 "tr": "ay",
 "ko": "달 (dal)",
 "mi": "marama",
-"he": "ירח (yareach)"
+"he": "ירח (yareach)",
+"cz": "měsíc",
+"ro": "lună"
+
 },
 "star": {
 "fr": "étoile",
@@ -1545,7 +1770,10 @@
 "tr": "yıldız",
 "ko": "별 (byeol)",
 "mi": "whetū",
-"he": "כוכב (kochav)"
+"he": "כוכב (kochav)",
+"cz": "hvězda",
+"ro": "stea"
+
 },
 "gift": {
 "fr": "cadeau",
@@ -1563,7 +1791,10 @@
 "tr": "hediye",
 "ko": "선물 (seonmul)",
 "mi": "koha",
-"he": "מתנה (matanah)"
+"he": "מתנה (matanah)",
+"cz": "dárek",
+"ro": "cadou"
+
 },
 
 "head": {
@@ -1582,7 +1813,10 @@
     "tr": "baş",
     "ko": "머리 (meori)",
     "mi": "upoko",
-    "he": "ראש (rosh)"
+    "he": "ראש (rosh)",
+    "cz": "hlava",
+     "ro": "cap"
+
 },
 "hand": {
     "fr": "main",
@@ -1600,7 +1834,10 @@
     "tr": "el",
     "ko": "손 (son)",
     "mi": "ringa",
-    "he": "יד (yad)"
+    "he": "יד (yad)",
+    "cz": "ruka",
+     "ro": "mână"
+
 },
 "eye": {
     "fr": "œil",
@@ -1618,7 +1855,10 @@
     "tr": "göz",
     "ko": "눈 (nun)",
     "mi": "karu",
-    "he": "עין (ayin)"
+    "he": "עין (ayin)",
+    "cz": "oko",
+    "ro": "ochi"
+
 },
 "red": {
     "fr": "rouge",
@@ -1636,7 +1876,10 @@
     "tr": "kırmızı",
     "ko": "빨간색 (ppalganseok)",
     "mi": "whero",
-    "he": "אדום (adom)"
+    "he": "אדום (adom)",
+    "cz": "červený",
+    "ro": "roșu"
+
 },
 "blue": {
     "fr": "bleu",
@@ -1654,7 +1897,10 @@
     "tr": "mavi",
     "ko": "파란색 (paranseok)",
     "mi": "kikorangi",
-    "he": "כחול (kahol)"
+    "he": "כחול (kahol)",
+    "cz": "modrý",
+    "ro": "albastru"
+
 },
 "suitcase": {
     "fr": "valise",
@@ -1672,7 +1918,10 @@
     "tr": "bavul",
     "ko": "여행 가방 (yeohaeng gabang)",
     "mi": "pēke",
-    "he": "מזוודה (mizvada)"
+    "he": "מזוודה (mizvada)",
+    "cz": "kufr",
+    "ro": "valiză"
+
 },
 
 "airport": {
@@ -1691,7 +1940,10 @@
     "tr": "havalimanı",
     "ko": "공항 (gonghang)",
     "mi": "taunga rererangi",
-    "he": "שדה תעופה (sde te'ufa)"
+    "he": "שדה תעופה (sde te'ufa)",
+    "cz": "letiště",
+    "ro": "aeroport"
+
 },
 "train": {
     "fr": "train",
@@ -1709,7 +1961,10 @@
     "tr": "tren",
     "ko": "기차 (gicha)",
     "mi": "tereina",
-    "he": "רכבת (rakevet)"
+    "he": "רכבת (rakevet)",
+    "cz": "vlak",
+    "ro": "tren"
+
 },
 "hotel": {
     "fr": "hôtel",
@@ -1727,8 +1982,11 @@
     "tr": "otel",
     "ko": "호텔 (hotel)",
     "mi": "hōtera",
-    "he": "מלון (malon)"
+    "he": "מלון (malon)",
+    "cz": "hotel",
+    "ro": "hotel"
 },
+
 "beach": {
 "fr": "plage",
 "ja": "ビーチ (bīchi)",
@@ -1745,7 +2003,10 @@
 "tr": "plaj",
 "ko": "해변 (haebyeon)",
 "mi": "whanga",
-"he": "חוף (hof)"
+"he": "חוף (hof)",
+"cz": "pláž",
+"ro": "plajă"
+
 },
 "city": {
 "fr": "ville",
@@ -1763,7 +2024,10 @@
 "tr": "şehir",
 "ko": "도시 (dosi)",
 "mi": "taone",
-"he": "עיר (ir)"
+"he": "עיר (ir)",
+"cz": "město",
+"ro": "oraș"
+
 },
 "color": {
 "fr": "couleur",
@@ -1781,7 +2045,10 @@
 "tr": "renk",
 "ko": "색 (saek)",
 "mi": "karu",
-"he": "צבע (tzeva)"
+"he": "צבע (tzeva)",
+"cz": "barva",
+"ro": "culoare"
+
 }
 }
 

@@ -13,6 +13,7 @@ import cron from 'node-cron';
 import coordinates from "./config/coordinates.js";
 import { telegramBotUri } from './config/config.js';  
 import { getEvents,getGroups, initializeBot } from './config/telegram/telegramBot.js';
+import supportedCurrencies from '../front/teleport/src/constants/supportedCurrencies.js';
 
 connectDB();
 const app = express();
@@ -95,7 +96,7 @@ const fetchAndCacheNews = async (countryCode) => {
   }
 };
 
-// Function to fetch and cache currency data
+// Function to fetch and cache currency data (5000CALLS/MONTH)
 const fetchAndCacheCurrency = async (currencyCode) => {
   try {
 
@@ -112,6 +113,33 @@ const fetchAndCacheCurrency = async (currencyCode) => {
   }
 };
 
+//fetch currency 2nd API (for AED, etc 1500CALLS/MONTH)
+const fetchAndCacheCurrency2 = async (currencyCode) => {
+  try {
+    const API_URL = 'https://v6.exchangerate-api.com';
+    const API_KEY = process.env.VITE_CURRENCY_NEW2;
+    const response = await axios.get(`${API_URL}/v6/${API_KEY}/latest/USD`);
+    const exchangeData = response.data;
+
+    if (exchangeData.result === "success" && exchangeData.conversion_rates[currencyCode]) {
+      const targetRate = exchangeData.conversion_rates[currencyCode];
+      const simplifiedData = {
+        base_code: "USD",
+        target_code: currencyCode,
+        conversion_rate: targetRate,
+        time_last_update_utc: exchangeData.time_last_update_utc
+      };
+      cache.set(`currency_${currencyCode}`, { data: simplifiedData, timestamp: Date.now() });
+      return simplifiedData;
+    } else {
+      throw new Error(`Currency code ${currencyCode} not found in the response`);
+    }
+  } catch (error) {
+    console.error(`Error fetching currency data for ${currencyCode}:`, error);
+    return null;
+  }
+};
+
 // Schedule jobs to refresh cache every 24 hours
 cron.schedule('0 0 * * *', async () => {
   console.log('Running daily cache refresh');
@@ -119,6 +147,8 @@ cron.schedule('0 0 * * *', async () => {
   for (const code of countryCodes) {
     await fetchAndCacheNews(code);
     await fetchAndCacheCurrency(currencyMap[code]);
+    await fetchAndCacheCurrency2(currencyMap[code]);
+
   }
 });
 
@@ -157,7 +187,19 @@ app.get('/api/currency-exchange/:countryCode', async (req, res) => {
   }
 
   try {
-    const exchangeData = await fetchAndCacheCurrency(currencyCode);
+    let exchangeData;
+
+    if (supportedCurrencies.includes(currencyCode)) {
+      try {
+        exchangeData = await fetchAndCacheCurrency(currencyCode);
+      } catch (error) {
+        console.error('Error with primary API, falling back to secondary:', error);
+        exchangeData = await fetchAndCacheCurrency2(currencyCode);
+      }
+    } else {
+      exchangeData = await fetchAndCacheCurrency2(currencyCode);
+    }
+
     if (exchangeData) {
       res.json(exchangeData);
     } else {

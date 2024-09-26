@@ -21,6 +21,7 @@ const cityToCountryCode = {
     'Bangkok': 'th',
     'Seoul': 'kr',
     'Bali': 'id',
+    'Tel Aviv': 'il',
     'Kyoto': 'jp',
     'Mumbai': 'in',
   

@@ -11,6 +11,7 @@ const coordinates = [
   { "city": "Dubrovnik", "lat": 42.6507, "lon": 18.0944 },
   { "city": "Bucharest", "lat": 44.4268, "lon": 26.1025 },
   { "city": "Dubai", "lat": 25.2048, "lon": 55.2708 },
+  { "city": "Tel Aviv", "lat":32.08088 , "lon":34.78057 },
   { "city": "Tokyo", "lat": 35.6762, "lon": 139.6503 },
   { "city": "Singapore", "lat": 1.3521, "lon": 103.8198 },
   { "city": "Shanghai", "lat": 31.2304, "lon": 121.4737 },

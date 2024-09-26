@@ -13,6 +13,7 @@ const currencyMap = {
     'IT': 'EUR', // Euro (Italy)
     'MX': 'MXN', // Mexican Peso
     'ZA': 'ZAR', // South African Rand
+    'SG': 'SGD', //Singapore
     'ES': 'EUR', // Euro (Spain)
     'CN': 'CNY', // Chinese Yuan
     'RU': 'RUB', // Russian Ruble
@@ -25,7 +26,12 @@ const currencyMap = {
     'GR': 'EUR', // Euro (Greece)
     'TR': 'TRY', // Turkish Lira
     'NZ': 'NZD', // New Zealand Dollar
-    'IL': 'ILS'  // Israeli New Shekel
+    'IL': 'ILS', // Israeli New Shekel
+    'RO': 'RON', //Romanian 
+    'CZ': 'CZK', //Czech
+    'AT': 'EUR', //Austria
+    'AE': 'AED', //United Arab Emirates
+  
   };
 
 export default currencyMap;
