@@ -31,6 +31,14 @@ const currencyMap = {
     'CZ': 'CZK', //Czech
     'AT': 'EUR', //Austria
     'AE': 'AED', //United Arab Emirates
+    'HK': 'HKD', //Hong Kong
+    'TH': 'THB', //Thailand
+    'ID': 'IDR', //Indonesia
+    'CO': 'COP', //Colombia
+    'MA': 'MAD', //Morocco
+    'KE': 'KES', //Kenya
+
+
   
   };
 

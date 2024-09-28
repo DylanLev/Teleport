@@ -20,7 +20,7 @@ const Map = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Fetched events:', data);
+        //console.log('Fetched events:', data);
         setEvents(data);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -74,7 +74,7 @@ const Map = () => {
       }
     }
 
-    console.log('Events updated:', events.map(e => ({...e, link: e.link || 'No link provided'})));
+    //console.log('Events updated:', events.map(e => ({...e, link: e.link || 'No link provided'})));
   }, [events]);
 
   return <div ref={mapRef} style={{ height: '400px', width: '100%' }}></div>;

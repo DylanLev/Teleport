@@ -28,10 +28,19 @@ const Home = () => {
       navigate('/');
       return;
     }
-
     const code = countryCode.toUpperCase();
     const country = countries[code] || { name: 'Unknown Country', timezone: 'UTC' };
+   
+
     setCountryName(country.name);
+
+   // Determine the correct timezone
+   let timezone;
+   if (code === 'US' && cityName && country.timezones) {
+     timezone = country.timezones[cityName] || country.timezones['New York']; // Default to New York if city not found
+   } else {
+     timezone = country.timezone;
+   }
 
     // Set local date and time based on country's timezone
     const options = { 
@@ -42,7 +51,7 @@ const Home = () => {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-      timeZone: country.timezone,
+      timeZone: timezone,
       hour12: false
     };
 
@@ -61,7 +70,6 @@ const Home = () => {
   if (!countryCode) {
     return null;
   }
-
   return (
     <>
       <button className="back-button" onClick={() => navigate(-1)}>Back</button>

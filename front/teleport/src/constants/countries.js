@@ -15,7 +15,7 @@ const countries = {
     ZA: { name: 'South Africa', timezone: 'Africa/Johannesburg' },
     ES: { name: 'Spain', timezone: 'Europe/Madrid' },
     GB: { name: 'United Kingdom', timezone: 'Europe/London' },
-    US: { name: 'United States', timezone: 'America/New_York' },
+    US: {  name: 'United States',  timezones: {'New York': 'America/New_York', 'Chicago': 'America/Chicago','Los Angeles': 'America/Los_Angeles', 'Las Vegas': 'America/Los_Angeles'}},    
     CN: { name: 'China', timezone: 'Asia/Shanghai' },
     AT: { name: 'Austria', timezone: 'Europe/Vienna' },
     RU: { name: 'Russia', timezone: 'Europe/Moscow' },
@@ -32,7 +32,12 @@ const countries = {
     IL: { name: 'Israel', timezone: 'Asia/Jerusalem' },
     AE: { name: 'United Arab Emirates', timezone: 'Asia/Dubai' },
     SG: { name: 'Singapore', timezone: 'Asia/Singapore' },
-    PE: { name: 'Peru', timezone: 'America/Lima' } 
+    PE: { name: 'Peru', timezone: 'America/Lima' },
+    TH: {name: 'Thailand', timezone: 'Asia/Bangkok'},
+    ID: {name: 'Indonesia', timezone: 'Asia/Makassar'},
+    MA: {name: 'Morocco', timezone: 'Africa/Casablanca'},
+    KE: {name: 'Kenya', timezone: 'Africa/Nairobi'}
+
   };
 
   export default countries;

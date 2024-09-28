@@ -46,8 +46,8 @@ const getLanguageByCountry = (countryCode) => {
     KR: 'ko', PT: 'pt', GR: 'el', TR: 'tr', NZ: 'en',
     IL: 'he', AE: 'ar', SG: 'en', PE: 'es', MA: 'ar',
     CZ: 'cz', AT: 'de', HR: 'hr', RO: 'ro', TH: 'th',
-    HK: 'zh', ID: 'id', VN: 'vi', CL: 'es', CO: 'es',
-    TZ: 'en', KE: 'en', GH: 'en', SN: 'fr'
+    HK: 'en', ID: 'id', VN: 'vi', CL: 'es', CO: 'es',
+    TZ: 'en', KE: 'en', GH: 'en', SN: 'fr', 
   };
   countryCode = countryCode.toUpperCase();
   return languageMap[countryCode] || 'en'; // Default to English if not found

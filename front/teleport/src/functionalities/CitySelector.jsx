@@ -62,7 +62,7 @@ const CitySelector = ({ continents, cities }) => {
             onClick={() => handleCityClick(city)}
           >
             <img 
-              src={`/cityimages/${city.toLowerCase().replace(' ', '-')}.jpg`} 
+              src={`/cityimages/${city.toLowerCase().replace(/ /g, '-')}.jpg`}              
               alt={city} 
               loading="lazy"
             />
