@@ -6,8 +6,9 @@ import Weather from '../../functionalities/Weather.jsx'
 import countries from "../../constants/countries.js";
 import Currency from '../../functionalities/Currency.jsx';
 import Language from '../../functionalities/Language.jsx';
-import History from '../../functionalities/History.jsx';
-
+import Tech from '../../functionalities/Tech.jsx';
+import { getLanguageByCountry } from '../../../services/languageService.js';
+import Crypto from '../../functionalities/Crypto.jsx';
 
 
 const Home = () => {
@@ -70,6 +71,16 @@ const Home = () => {
   if (!countryCode) {
     return null;
   }
+
+  const nonewscountries = (countryCode)=> {
+    const noNewsCountries = ['fr', 'ke', 'ma', 'ae', 'at', 'id','ar'];
+    return noNewsCountries.includes(countryCode.toLowerCase());
+  };
+  const noenglishlanguage = (countryCode) => {
+    return getLanguageByCountry(countryCode) !== 'en';
+
+  }
+
   return (
     <>
       <button className="back-button" onClick={() => navigate(-1)}>Back</button>
@@ -95,21 +106,21 @@ const Home = () => {
       countryCode={countryCode} 
     />}
 
-    <section className="economics">
-      <h2>Economic Indicators</h2>
-      {/* Economic indicators content specific to the country */}
-    </section>
+    {!nonewscountries(countryCode) && <Crypto/>
+    }
   </div>
 
   <div className="column center">
-    <News 
-      countryName={countryName}
-      countryCode={countryCode}
-    />
+  {nonewscountries(countryCode) ? <Tech/>: (
+  <News 
+    countryName={countryName}
+    countryCode={countryCode}
+  />
+  )}
     
-    <section className="twitter">
-      <h2>Trending on Twitter in {countryName}</h2>
-      {/* Twitter API content specific to the country */}
+    <section className="nothing">
+      <h2>nothing yet</h2>
+      
     </section>
 
     <section className="music">
@@ -119,18 +130,14 @@ const Home = () => {
   </div>
 
   <div className="column right">
-    <Language
+    {noenglishlanguage(countryCode) && <Language
     countryCode={countryCode} 
-    />
+    />}
 
-    <History
-    countryName={countryName}
-    />
+    {!nonewscountries(countryCode) && <Tech
+    />}
 
-    <section className="fun-fact">
-      <h2>Did You Know? ({countryName} Edition)</h2>
-      {/* Fun fact API content specific to the country */}
-    </section>
+    {nonewscountries(countryCode) && <Crypto/>}
   </div>
 </main>
       </div>
@@ -138,16 +145,6 @@ const Home = () => {
   );
 };
 
-// Helper function to get the main language of a country (simplified)
-function getLanguageByCountry(countryCode) {
-  if (!countryCode) return 'the local language';
-  
-  const code = countryCode.toUpperCase();
-  const languages = {
-    FR: 'French', JP: 'Japanese', BR: 'Portuguese', AU: 'English', EG: 'Arabic',
-    // ... (other languages)
-  };
-  return languages[code] || 'the local language';
-}
+
 
 export default Home;

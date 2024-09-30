@@ -24,7 +24,7 @@ const Language = ({ countryCode }) => {
   return (
     <section className="language">
       <h2>
-        {language === 'en' ? 'Expand Your Vocabulary' : `Learn ${getLanguage(countryCode)}`}
+        {`Learn ${getLanguage(countryCode)}`}
       </h2>
       <ul>
         {dailyWords.map((word, index) => (
