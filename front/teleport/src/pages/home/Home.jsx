@@ -118,15 +118,9 @@ const Home = () => {
   />
   )}
     
-    <section className="nothing">
-      <h2>nothing yet</h2>
-      
-    </section>
+    
 
-    <section className="music">
-      <h2>Spotify Top Tracks in {countryName}</h2>
-      {/* Spotify API content specific to the country */}
-    </section>
+   
   </div>
 
   <div className="column right">

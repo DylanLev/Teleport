@@ -1,0 +1,147 @@
+.scrollWidget {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 20px;
+  padding: 2rem 50px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(30deg);
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    color: #4ecdc4;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+  }
+}
+
+.scrollContainer {
+  display: flex;
+  overflow-x: hidden; // Changed from auto to hidden
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  -ms-overflow-style: none; // For Internet Explorer and Edge
+  scrollbar-width: none; // For Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // For Safari and Chrome
+  }
+}
+
+.trendingCard {
+  flex: 0 0 calc(99% - 40px); // Adjusted to make it a bit smaller
+  width: calc(100% - 40px); // Adjusted width
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  
+   transition: all .3s ease; 
+   backdrop-filter: blur(10px);
+   border: .5px solid rgba(255,255,255,.1);
+
+   &:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow:
+      rgba(78,205,196,.3) -3px -3px; 
+   }
+
+   h4 {
+      font-size:1.4rem; 
+      color:#ff6b6b; 
+      margin-bottom:.5rem; 
+   }
+
+   p {
+      font-size:.9rem; 
+      color:#a0a0a0; 
+      margin-bottom:.5rem; 
+   }
+
+   .hashtag {
+      font-size:.9rem; 
+      color:#4ecdc4; 
+      font-weight:bold; 
+   }
+}
+
+.scrollButton {
+   position:absolute; 
+   top:50%; 
+   transform:translateY(-50%); 
+   background: rgba(78,205,196,.2); 
+   border:none; 
+   color:#4ecdc4; 
+   width:40px; 
+   height:40px; 
+   cursor:pointer; 
+   transition:.3s ease; 
+   opacity:.7; 
+   z-index:10; 
+   border-radius:50%;
+
+   &::before,
+   &::after {
+     content:''; 
+     position:absolute; 
+     width:15px; 
+     height:2px; 
+     background-color:currentColor; 
+     top:50%; 
+     transition:.3s ease;
+   }
+
+   &:hover { opacity:.9; color:#ff6b6b; background:rgba(255,107,107,.2); }
+
+   &:active { transform:translateY(-50%) scale(.95); }
+
+   &.left { left:-10px;
+
+       &::before { left:45%; transform:translate(-50%,-4px) rotate(-45deg); }
+       &::after { left:45%; transform:translate(-50%,4px) rotate(45deg); }
+   }
+
+   &.right { right:-10px;
+
+       &::before { right:45%; transform:translate(50%,-4px) rotate(45deg); }
+       &::after { right:45%; transform:translate(50%,4px) rotate(-45deg); }
+   }
+
+   &:hover::before,
+   &:hover::after { width:18px;}
+}
+
+@media (max-width:768px) {
+ .scrollWidget { padding:.5rem;
+
+     h2 { font-size:.8rem;}
+ }
+
+ .trendingCard { width:auto;}
+
+ .scrollButton {
+     width:.8rem;
+     height:.8rem;
+
+     &.left { left:-20px;}
+     &.right { right:-20px;}
+
+     &::before,
+     &::after {width:.8rem;}
+     
+     &:hover::before,
+     &:hover::after {width:.9rem;}
+ }
+}
