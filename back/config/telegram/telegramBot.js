@@ -14,7 +14,7 @@ bot.onText(/\/help/, (msg) => {
     '- Delete an existing event: /deleteevent City/Exact Description\n',
     '- Create a new group: /creategroup Name/Category/"Link"\n',
     '- Delete an existing group: /deletegroup Name\n',
-    '- Create a new topic: /createtopic Title/"YT Link" or content/Author',
+    '- Create a new topic: /createtopic Title/YT Link or content/Author',
     '- Delete an existing topic: /deletetopic Title',
     '- Show all events: /getevents\n',
     '- Show all groups: /getgroups\n',
@@ -201,39 +201,54 @@ async function getGroups() {
 //-------------- END GROUPS ---------------------------------------------------------------------
 //--------------- TOPICS -----------------------------------------------------------------------
 // Create a new topic
-bot.onText(/\/createtopic (.+)/, async (msg, match) => {
+bot.onText(/\/createtopic (.+)/s, async (msg, match) => {
   const chatId = msg.chat.id;
-  const topicData = match[1].split(/\/(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-  
-  if (topicData.length === 3) {
-    const [title, linkOrContent, author] = topicData;
-    
-    if (!title || !author) {
-      bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/"YT Link" or content/Author');
-      return;
-    }
+  const fullText = match[1];
 
-    const cleanLinkOrContent = linkOrContent.replace(/^"|"$/g, '').trim(); // Remove surrounding quotes
+  // Find the last occurrence of '/' to separate the author
+  const lastSlashIndex = fullText.lastIndexOf('/');
+  if (lastSlashIndex === -1) {
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content/Author');
+    return;
+  }
+
+  const author = fullText.slice(lastSlashIndex + 1).trim();
+  const remainingText = fullText.slice(0, lastSlashIndex);
+
+  // Find the first occurrence of '/' to separate the title
+  const firstSlashIndex = remainingText.indexOf('/');
+  if (firstSlashIndex === -1) {
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content/Author');
+    return;
+  }
+
+  const title = remainingText.slice(0, firstSlashIndex).trim();
+  let content = remainingText.slice(firstSlashIndex + 1).trim();
+
+  if (!title || !content || !author) {
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content/Author');
+    return;
+  }
+
+  try {
+    const newTopic = new Topic({
+      title,
+      author,
+      content,
+      link: content.startsWith('http') ? content : null
+    });
     
-    try {
-      const newTopic = new Topic({
-        title,
-        author,
-        link: cleanLinkOrContent.startsWith('http') ? cleanLinkOrContent : null,
-        content: cleanLinkOrContent.startsWith('http') ? null : cleanLinkOrContent
-      });
-      
-      await newTopic.save();
-      bot.sendMessage(chatId, 'Topic created successfully!');
-      console.log('New topic created:', newTopic);
-    } catch (error) {
-      console.error('Error creating topic:', error);
-      bot.sendMessage(chatId, 'Error creating topic. Please try again.');
-    }
-  } else {
-    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/"YT Link" or content/Author');
+    await newTopic.save();
+    bot.sendMessage(chatId, 'Topic created successfully!');
+    console.log('New topic created:', newTopic);
+  } catch (error) {
+    console.error('Error creating topic:', error);
+    bot.sendMessage(chatId, 'Error creating topic. Please try again.');
   }
 });
+
+
+
  //Fetch Topics
  async function getTopics() {
   try {

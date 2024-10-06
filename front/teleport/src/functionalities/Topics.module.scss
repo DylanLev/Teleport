@@ -30,118 +30,136 @@
 
 .scrollContainer {
   display: flex;
-  overflow-x: hidden; // Changed from auto to hidden
+  overflow-x: hidden;
   scroll-behavior: smooth;
   padding: 1rem 0;
-  -ms-overflow-style: none; // For Internet Explorer and Edge
-  scrollbar-width: none; // For Firefox
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; // For Safari and Chrome
+    display: none;
   }
 }
 
 .trendingCard {
-  flex: 0 0 calc(99% - 40px); // Adjusted to make it a bit smaller
-  width: calc(100% - 40px); // Adjusted width
+  flex: 0 0 calc(99% - 40px);
+  width: calc(100% - 40px);
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
   padding: 1.5rem;
-  
-   transition: all .3s ease; 
-   backdrop-filter: blur(10px);
-   border: .5px solid rgba(255,255,255,.1);
+  transition: all .3s ease;
+  backdrop-filter: blur(10px);
+  border: .5px solid rgba(255,255,255,.1);
+  display: flex;
+  flex-direction: column;
+  height: 300px; // Set a fixed height
 
-   &:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow:
-      rgba(78,205,196,.3) -3px -3px; 
-   }
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: rgba(78,205,196,.3) -3px -3px;
+  }
+}
 
-   h4 {
-      font-size:1.4rem; 
-      color:#ff6b6b; 
-      margin-bottom:.5rem; 
-   }
+.topicTitle {
+  font-size: 1.6rem;
+  color: #ff6b6b;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  display: block;
+  margin-top: -0.5rem; // Move title a bit higher
 
-   p {
-      font-size:.9rem; 
-      color:#a0a0a0; 
-      margin-bottom:.5rem; 
-   }
+  &.clickable {
+    cursor: pointer;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
-   .hashtag {
-      font-size:.9rem; 
-      color:#4ecdc4; 
-      font-weight:bold; 
-   }
+.topicContent {
+  flex-grow: 1;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.author {
+  color: #4ecdc4 !important; // Change color to make it separate from content
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: auto; // Push author to the bottom
+  align-self: flex-end; // Align author to the right
 }
 
 .scrollButton {
-   position:absolute; 
-   top:50%; 
-   transform:translateY(-50%); 
-   background: rgba(78,205,196,.2); 
-   border:none; 
-   color:#4ecdc4; 
-   width:40px; 
-   height:40px; 
-   cursor:pointer; 
-   transition:.3s ease; 
-   opacity:.7; 
-   z-index:10; 
-   border-radius:50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(78,205,196,.2);
+  border: none;
+  color: #4ecdc4;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: .3s ease;
+  opacity: .7;
+  z-index: 10;
+  border-radius: 50%;
 
-   &::before,
-   &::after {
-     content:''; 
-     position:absolute; 
-     width:15px; 
-     height:2px; 
-     background-color:currentColor; 
-     top:50%; 
-     transition:.3s ease;
-   }
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background-color: currentColor;
+    top: 50%;
+    transition: .3s ease;
+  }
 
-   &:hover { opacity:.9; color:#ff6b6b; background:rgba(255,107,107,.2); }
+  &:hover { opacity: .9; color: #ff6b6b; background: rgba(255,107,107,.2); }
 
-   &:active { transform:translateY(-50%) scale(.95); }
+  &:active { transform: translateY(-50%) scale(.95); }
 
-   &.left { left:-10px;
+  &.left {
+    left: -10px;
+    &::before { left: 45%; transform: translate(-50%,-4px) rotate(-45deg); }
+    &::after { left: 45%; transform: translate(-50%,4px) rotate(45deg); }
+  }
 
-       &::before { left:45%; transform:translate(-50%,-4px) rotate(-45deg); }
-       &::after { left:45%; transform:translate(-50%,4px) rotate(45deg); }
-   }
+  &.right {
+    right: -10px;
+    &::before { right: 45%; transform: translate(50%,-4px) rotate(45deg); }
+    &::after { right: 45%; transform: translate(50%,4px) rotate(-45deg); }
+  }
 
-   &.right { right:-10px;
-
-       &::before { right:45%; transform:translate(50%,-4px) rotate(45deg); }
-       &::after { right:45%; transform:translate(50%,4px) rotate(-45deg); }
-   }
-
-   &:hover::before,
-   &:hover::after { width:18px;}
+  &:hover::before,
+  &:hover::after { width: 18px; }
 }
 
-@media (max-width:768px) {
- .scrollWidget { padding:.5rem;
+@media (max-width: 768px) {
+  .scrollWidget {
+    padding: .5rem;
+    h2 { font-size: .8rem; }
+  }
 
-     h2 { font-size:.8rem;}
- }
+  .trendingCard { width: auto; }
 
- .trendingCard { width:auto;}
+  .scrollButton {
+    width: .8rem;
+    height: .8rem;
 
- .scrollButton {
-     width:.8rem;
-     height:.8rem;
+    &.left { left: -20px; }
+    &.right { right: -20px; }
 
-     &.left { left:-20px;}
-     &.right { right:-20px;}
-
-     &::before,
-     &::after {width:.8rem;}
-     
-     &:hover::before,
-     &:hover::after {width:.9rem;}
- }
+    &::before,
+    &::after { width: .8rem; }
+    
+    &:hover::before,
+    &:hover::after { width: .9rem; }
+  }
 }

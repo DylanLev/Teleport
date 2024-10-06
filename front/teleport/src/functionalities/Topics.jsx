@@ -55,15 +55,25 @@ const Topics = () => {
     }
   };
 
-  const handleTopicClick = (link) => {
-    if (link) {
-      const cleanLink = link.replace(/^["']|["']$/g, '');
-      if (/^https?:\/\//.test(cleanLink)) {
-        window.open(cleanLink, '_blank', 'noopener,noreferrer');
-      } else {
-        console.warn('Invalid URL:', cleanLink);
-      }
-    }
+  const renderContent = (content) => {
+    if (!content) return '';
+    const lines = content.split('\n');
+    return lines.map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        {index < lines.length - 1 && <br />}
+      </React.Fragment>
+    ));
+  };
+
+  const cleanLink = (link) => {
+    return link ? link.replace(/^["']|["']$/g, '').trim() : '';
+  };
+
+  const isYoutubeLink = (link) => {
+    if (!link) return false;
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+    return youtubeRegex.test(link);
   };
 
   return (
@@ -79,24 +89,27 @@ const Topics = () => {
               transition: 'transform 0.5s ease-in-out'
             }}
           >
-            <h4 
-              className={`${styles.topicTitle} ${topic.link ? styles.clickable : ''}`}
-              onClick={() => handleTopicClick(topic.link)}
-            >
-              {topic.title}
-            </h4>
-            <p>{topic.content ? `${topic.content.substring(0, 50)}...` : ''}</p>
-            <p className={styles.author}>{topic.author}</p>
-            {topic.link && (
+            {topic.link ? (
               <a 
-                href={topic.link.replace(/^["']|["']$/g, '')} 
+                href={cleanLink(topic.link)}
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className={styles.topicLink}
+                className={`${styles.topicTitle} ${styles.clickable}`}
               >
-                View Source
+                {topic.title}
               </a>
+            ) : (
+              <h4 className={styles.topicTitle}>{topic.title}</h4>
             )}
+            <div className={styles.topicContent}>
+              {renderContent(topic.content)}
+            </div>
+            <p className={styles.author}>
+              {topic.author}
+              <span className={styles.via}>
+                {' '}via {topic.link ? (isYoutubeLink(cleanLink(topic.link)) ? 'Youtube' : 'X') : 'X'}
+              </span>
+            </p>
           </div>
         ))}
       </div>
