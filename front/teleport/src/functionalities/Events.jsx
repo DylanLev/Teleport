@@ -12,7 +12,8 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(API_URL);
-        setEvents(response.data);
+        // Reverse the order of events so new ones appear on the left
+        setEvents(response.data.reverse());
       } catch (error) {
         console.error('Error fetching events:', error);
       }
@@ -23,6 +24,13 @@ const Events = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    // Scroll to the leftmost position when new events are added
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = 0;
+    }
+  }, [events]);
 
   const scrollContent = (direction) => {
     if (scrollRef.current) {
@@ -36,9 +44,7 @@ const Events = () => {
 
   const handleEventClick = (link) => {
     if (link) {
-      // Remove surrounding quotes if present
       const cleanLink = link.replace(/^["']|["']$/g, '');
-      // Check if it's a valid URL
       if (/^https?:\/\//.test(cleanLink)) {
         window.open(cleanLink, '_blank', 'noopener,noreferrer');
       } else {
@@ -49,7 +55,8 @@ const Events = () => {
 
   return (
     <div className={styles.events}>
-      <h2>Upcoming Events (latest ➜)</h2>
+      <br/>
+      <h2>Upcoming Events</h2>
       <div className={styles.scrollContainer} ref={scrollRef}>
         {events.map(event => (
           <div 

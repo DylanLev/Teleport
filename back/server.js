@@ -1,5 +1,4 @@
 import express from 'express';
-import colors from 'colors';
 import connectDB from './config/db.js';
 import errorHandler from './middlewares/errorMiddleware.js';
 import NodeCache from 'node-cache';
@@ -12,7 +11,7 @@ import noteRoutes from './routes/noteRoute.js';
 import cron from 'node-cron';
 import coordinates from "./config/coordinates.js";
 import { telegramBotUri } from './config/config.js';  
-import { getEvents,getGroups, initializeBot } from './config/telegram/telegramBot.js';
+import { getEvents,getGroups,getTopics, initializeBot } from './config/telegram/telegramBot.js';
 import supportedCurrencies from '../front/teleport/src/constants/supportedCurrencies.js';
 
 connectDB();
@@ -46,6 +45,11 @@ app.get('/api/events', async (req, res) => {
 app.get('/api/groups', async (req, res) => {
   const groups = await getGroups();
   res.json(groups);
+});
+//GET Topics
+app.get('/api/topics', async (req, res) => {
+  const topics = await getTopics();
+  res.json(topics);
 });
 
 

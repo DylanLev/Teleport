@@ -3,7 +3,7 @@ import { validateDate, formatDate } from '../date.js';
 import { telegramBotUri } from '../config.js';  // Adjust the path as necessary
 import Event from '../../models/eventModel.js';
 import Group from "../../models/groupModel.js";
-
+import Topic from "../../models/topicModel.js";
 //------------TELEGRAM API--------------------------
 const bot = new TelegramBot(telegramBotUri, { polling: true });
 
@@ -14,8 +14,11 @@ bot.onText(/\/help/, (msg) => {
     '- Delete an existing event: /deleteevent City/Exact Description\n',
     '- Create a new group: /creategroup Name/Category/"Link"\n',
     '- Delete an existing group: /deletegroup Name\n',
+    '- Create a new topic: /createtopic Title/"YT Link" or content/Author',
+    '- Delete an existing topic: /deletetopic Title',
     '- Show all events: /getevents\n',
-    '- Show all groups: /getgroups\n'
+    '- Show all groups: /getgroups\n',
+    '- Show all topics: /gettopics\n'
   ];
 
   const helpMessage = 'Available commands:\n\n' + commands.join('\n');
@@ -23,7 +26,7 @@ bot.onText(/\/help/, (msg) => {
 });
 
 
-//------- EVENTS ------------
+//------- EVENTS ----------------------------------------------------------------------
 //Create event
 bot.onText(/\/createevent (.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
@@ -116,9 +119,9 @@ bot.onText(/\/getevents/, async (msg) => {
     bot.sendMessage(chatId, 'Error fetching events. Please try again.');
   }
 });
-//------- EVENTS --------
+//------- END EVENTS ----------------------------------------------------------------
 
-//------- GROUPS -------------------------
+//------- GROUPS --------------------------------------------------------------------
 // Create group
 bot.onText(/\/creategroup (.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
@@ -195,12 +198,95 @@ async function getGroups() {
     return [];
   }
 }
+//-------------- END GROUPS ---------------------------------------------------------------------
+//--------------- TOPICS -----------------------------------------------------------------------
+// Create a new topic
+bot.onText(/\/createtopic (.+)/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const topicData = match[1].split(/\/(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+  
+  if (topicData.length === 3) {
+    const [title, linkOrContent, author] = topicData;
+    
+    if (!title || !author) {
+      bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/"YT Link" or content/Author');
+      return;
+    }
 
+    const cleanLinkOrContent = linkOrContent.replace(/^"|"$/g, '').trim(); // Remove surrounding quotes
+    
+    try {
+      const newTopic = new Topic({
+        title,
+        author,
+        link: cleanLinkOrContent.startsWith('http') ? cleanLinkOrContent : null,
+        content: cleanLinkOrContent.startsWith('http') ? null : cleanLinkOrContent
+      });
+      
+      await newTopic.save();
+      bot.sendMessage(chatId, 'Topic created successfully!');
+      console.log('New topic created:', newTopic);
+    } catch (error) {
+      console.error('Error creating topic:', error);
+      bot.sendMessage(chatId, 'Error creating topic. Please try again.');
+    }
+  } else {
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/"YT Link" or content/Author');
+  }
+});
+ //Fetch Topics
+ async function getTopics() {
+  try {
+    return await Topic.find();
+  } catch (error) {
+    console.error('Error fetching topics:', error);
+    return [];
+  }
+}
+// Get all topics
+bot.onText(/\/gettopics/, async (msg) => {
+  const chatId = msg.chat.id;
+  try {
+    const topics = await Topic.find().sort({ _id: -1 }).limit(10); // Get the latest 10 topics
+    if (topics.length > 0) {
+      const topicList = topics.map(topic => 
+        `${topic.title} by ${topic.author}${topic.link ? `\nLink: ${topic.link}` : ''}${topic.content ? `\nContent: ${topic.content.substring(0, 50)}...` : ''}`
+      ).join('\n\n');
+      bot.sendMessage(chatId, `Latest topics:\n\n${topicList}`);
+    } else {
+      bot.sendMessage(chatId, 'No topics found.');
+    }
+  } catch (error) {
+    console.error('Error fetching topics:', error);
+    bot.sendMessage(chatId, 'Error fetching topics. Please try again.');
+  }
+});
+// Delete topic
+bot.onText(/\/deletetopic (.+)/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const title = match[1].trim();
+  
+  try {
+    const deletedTopic = await Topic.findOneAndDelete({
+      title: { $regex: new RegExp(title, 'i') }
+    });
 
+    if (deletedTopic) {
+      bot.sendMessage(chatId, `Topic deleted successfully: "${deletedTopic.title}" by ${deletedTopic.author}`);
+      console.log('Topic deleted:', deletedTopic);
+    } else {
+      bot.sendMessage(chatId, 'Topic not found. Please check the title.');
+    }
+  } catch (error) {
+    console.error('Error deleting topic:', error);
+    bot.sendMessage(chatId, 'Error deleting topic. Please try again.');
+  }
+});
+//---------------END TOPICS------------------------------------------------------------------------
 
 function initializeBot() {
     // This function can be used to set up any initial configurations
     console.log('Telegram bot initialized');
   }
   
-  export { bot, getEvents, getGroups, initializeBot };
+  export { bot, getEvents, getGroups, getTopics, initializeBot };

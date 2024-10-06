@@ -7,7 +7,7 @@ import Events from "../../functionalities/Events.jsx";
 import CitySelector from '../../functionalities/CitySelector.jsx'; 
 import Group from '../../functionalities/Groups.jsx';
 import cities from "../../constants/cities.js";
-import Trending from '../../functionalities/Trending.jsx';
+import Topics from '../../functionalities/Topics.jsx';
 
 
 const GetStarted = () => {
@@ -65,12 +65,12 @@ const GetStarted = () => {
         
 
         <div className="scroll-widget">
-        <Trending scrollContent={scrollContent} />
+        <Topics scrollContent={scrollContent} />
         
         <Group scrollContent={scrollContent} />
         </div>
         <div className="scroll-widget">
-          <h2>Trending</h2>
+          <h2>Trending Personalities</h2>
           <div className="scroll-container" ref={scrollRefs.topics}>
             {trendingTopics.map(topic => (
               <div key={topic} className="topic-card">

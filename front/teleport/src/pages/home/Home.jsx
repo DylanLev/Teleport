@@ -73,7 +73,7 @@ const Home = () => {
   }
 
   const nonewscountries = (countryCode)=> {
-    const noNewsCountries = ['fr', 'ke', 'ma', 'ae', 'at', 'id','ar'];
+    const noNewsCountries = ['fr', 'ke', 'ma', 'ae', 'at', 'id','ar','sg'];
     return noNewsCountries.includes(countryCode.toLowerCase());
   };
   const noenglishlanguage = (countryCode) => {

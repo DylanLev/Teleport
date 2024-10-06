@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import "./Map.scss";
-import { getCityCoordinates } from './coordinates.js';
+import { getCityCoordinates } from './coordinatesForMap.js';
 
 const API_URL = 'http://localhost:5000/api/events';
 const POLL_INTERVAL = 5000; // 5 seconds
