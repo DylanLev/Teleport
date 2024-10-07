@@ -1,9 +1,11 @@
 import TelegramBot from "node-telegram-bot-api";
 import { validateDate, formatDate } from '../date.js'; 
-import { telegramBotUri } from '../config.js';  // Adjust the path as necessary
+import { telegramBotUri } from '../config.js';  
 import Event from '../../models/eventModel.js';
 import Group from "../../models/groupModel.js";
 import Topic from "../../models/topicModel.js";
+import summarizeYouTubeVideo from '../../scrapers/scraper.js';
+
 //------------TELEGRAM API--------------------------
 const bot = new TelegramBot(telegramBotUri, { polling: true });
 
@@ -208,7 +210,7 @@ bot.onText(/\/createtopic (.+)/s, async (msg, match) => {
   // Find the last occurrence of '/' to separate the author
   const lastSlashIndex = fullText.lastIndexOf('/');
   if (lastSlashIndex === -1) {
-    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content/Author');
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content or YouTube Link/Author');
     return;
   }
 
@@ -218,7 +220,7 @@ bot.onText(/\/createtopic (.+)/s, async (msg, match) => {
   // Find the first occurrence of '/' to separate the title
   const firstSlashIndex = remainingText.indexOf('/');
   if (firstSlashIndex === -1) {
-    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content/Author');
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content or YouTube Link/Author');
     return;
   }
 
@@ -226,16 +228,27 @@ bot.onText(/\/createtopic (.+)/s, async (msg, match) => {
   let content = remainingText.slice(firstSlashIndex + 1).trim();
 
   if (!title || !content || !author) {
-    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content/Author');
+    bot.sendMessage(chatId, 'Invalid format. Please use: /createtopic Title/Content or YouTube Link/Author');
     return;
   }
 
   try {
+    let link = null;
+    if (content.startsWith('http') && content.includes('youtu')) {
+      link = content;
+      bot.sendMessage(chatId, 'Summarizing YouTube video. This may take a moment...');
+      content = await summarizeYouTubeVideo(link);
+      if (!content) {
+        bot.sendMessage(chatId, 'Failed to summarize the YouTube video. Please try again or provide content manually.');
+        return;
+      }
+    }
+
     const newTopic = new Topic({
       title,
       author,
       content,
-      link: content.startsWith('http') ? content : null
+      link
     });
     
     await newTopic.save();

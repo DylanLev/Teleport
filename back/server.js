@@ -11,8 +11,11 @@ import noteRoutes from './routes/noteRoute.js';
 import cron from 'node-cron';
 import coordinates from "./config/coordinates.js";
 import { telegramBotUri } from './config/config.js';  
-import { getEvents,getGroups,getTopics, initializeBot } from './config/telegram/telegramBot.js';
+import { initializeBot } from './config/telegram/telegramBot.js';
 import supportedCurrencies from '../front/teleport/src/constants/supportedCurrencies.js';
+import topicRoutes from "./routes/topicRoute.js";
+import groupRoutes from "./routes/groupRoute.js";
+import eventRoutes from "./routes/eventRoute.js";
 
 connectDB();
 const app = express();
@@ -24,9 +27,12 @@ const cache = new NodeCache({ stdTTL: 24 * 60 * 60 }); // Cache for 24 hours
 
 // Enable CORS for all routes
 app.use(cors());
+
+//Enable json
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+//not in use 
 app.use('/api/favorites', favoriteRoutes);
 app.use('/api/notes', noteRoutes);
 
@@ -35,22 +41,12 @@ app.use('/api/notes', noteRoutes);
 //Init
 initializeBot();
 
-//GET Events
-app.get('/api/events', async (req, res) => {
-  const events = await getEvents();
-  res.json(events);
-});
-//----------------------------------------------
-//GET Groups
-app.get('/api/groups', async (req, res) => {
-  const groups = await getGroups();
-  res.json(groups);
-});
-//GET Topics
-app.get('/api/topics', async (req, res) => {
-  const topics = await getTopics();
-  res.json(topics);
-});
+//Event Route
+app.use('/api/events', eventRoutes);
+//Group Route
+app.use('/api/groups', groupRoutes);
+//Topic Route
+app.use('/api/topics', topicRoutes);
 
 
 // Function to fetch and cache weather data

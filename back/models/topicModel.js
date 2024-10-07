@@ -17,6 +17,10 @@ const topicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  summary: {
+    type: String,
+    required: false
+  },
 });
 
 const Topic = mongoose.model('Topic', topicSchema);
